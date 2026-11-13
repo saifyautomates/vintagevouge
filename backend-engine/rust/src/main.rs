@@ -612,7 +612,7 @@ fn get_seed_products() -> Vec<Product> {
             original_estimate_price: 9000,
             size: "Oversized L".to_string(),
             condition_rating: "9.0/10 Distressed Vintage".to_string(),
-            rarity: "Rare Thrift Find".to_string(),
+            rarity: "Rare Archival Discovery".to_string(),
             drop_batch: "Drop #24 — The Autumn Nomad".to_string(),
             fabric: "100% Pre-Shrunk Open-End Heavy Cotton".to_string(),
             measurements: Measurements {

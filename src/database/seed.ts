@@ -42,7 +42,7 @@ export const SEED_PRODUCTS: ProductRecord[] = [
     subtitle: 'Sun-Faded Whisker Wear & Copper Shank Hardware',
     category: 'denim-workwear',
     era: 'Late 90s Archive',
-    origin: 'Nagoya Flea Market • Hand-Selected for India',
+    origin: 'Nagoya Heritage Vault • Hand-Selected for India',
     price: 4299,
     originalEstimatePrice: 7800,
     size: 'Oversized L',
@@ -183,7 +183,7 @@ export const SEED_PRODUCTS: ProductRecord[] = [
     originalEstimatePrice: 9000,
     size: 'Oversized L',
     conditionRating: '9.0/10 Distressed Vintage',
-    rarity: 'Rare Thrift Find',
+    rarity: 'Rare Archival Discovery',
     dropBatch: 'Drop #24 — The Autumn Nomad',
     fabric: '100% Pre-Shrunk Open-End Heavy Cotton',
     measurements: {

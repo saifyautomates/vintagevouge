@@ -52,7 +52,7 @@ export const DropCountdownRibbon: React.FC = () => {
 
       {/* Center: Brand Pill for 1-of-1 Vintage */}
       <div className="hidden lg:flex items-center gap-2 text-[#FAF7F2]/75 text-[10px]">
-        <span>ALL GARMENTS 1-OF-1 AUTHENTICATED THRIFT</span>
+        <span>ALL SPECIMENS 1-OF-1 AUTHENTICATED ARCHIVE</span>
         <span>•</span>
         <span>NO RESTOCKS EVER</span>
       </div>
@@ -63,9 +63,9 @@ export const DropCountdownRibbon: React.FC = () => {
           href="https://www.instagram.com/vintagevoguee_in/?hl=en"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-[10px] text-[#FAF7F2]/90 hover:text-[#E67E44] transition-colors font-mono font-bold"
+          className="flex items-center gap-1.5 text-[10px] text-[#FAF7F2]/90 hover:text-[#C4975A] transition-colors font-mono font-bold"
         >
-          <Instagram className="w-3.5 h-3.5 text-[#E67E44]" />
+          <Instagram className="w-3.5 h-3.5 text-[#C4975A]" />
           <span>@VINTAGEVOGUEE_IN</span>
         </a>
 

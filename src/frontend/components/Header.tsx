@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearchQuery, onSelectCategory,
             className="flex items-center gap-2 text-xs tracking-wider uppercase text-[#181513]/80 hover:text-[#181513] transition-colors group"
             aria-label="Search Collection"
           >
-            <Search className="w-4 h-4 text-[#E67E44] group-hover:scale-110 transition-transform" />
+            <Search className="w-4 h-4 text-[#A65B32] group-hover:scale-110 transition-transform" />
             <span className="hidden sm:inline font-mono text-[11px] tracking-widest">SEARCH ARCHIVE</span>
             <span className="hidden md:inline-flex items-center text-[9px] font-mono bg-[#181513]/5 border border-[#181513]/15 px-1.5 py-0.5 rounded text-[#5C564E]">
               ⌘K
@@ -65,17 +65,29 @@ export const Header: React.FC<HeaderProps> = ({ onSearchQuery, onSelectCategory,
         {/* Center: Brand Wordmark (Vintage Vogue India) */}
         <div className="text-center">
           <a href="#" className="inline-block group">
-            <h1 className="font-display tracking-[0.25em] text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-[#181513] group-hover:text-[#E67E44] transition-colors">
+            <h1 className="font-display tracking-[0.28em] text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-[#181513] group-hover:text-[#A65B32] transition-colors">
               VINTAGE VOGUE
             </h1>
-            <p className="font-serif italic text-xs tracking-[0.22em] text-[#5C564E] -mt-0.5">
-              Curated Thrift & Archival Western Wear • India
+            <p className="font-serif italic text-xs tracking-[0.24em] text-[#5C564E] -mt-0.5">
+              Haute Archival Western Wear & Japanese Heritage Atelier • India
             </p>
           </a>
         </div>
 
-        {/* Right: Drop Alert, Wishlist & Bag */}
-        <div className="flex items-center gap-2.5 sm:gap-4">
+        {/* Right: Instagram, Drop Alert, Wishlist & Bag */}
+        <div className="flex items-center gap-2 sm:gap-3.5">
+          {/* Instagram Live Drops Link */}
+          <a
+            href="https://www.instagram.com/vintagevoguee_in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden xl:flex items-center gap-1.5 px-2.5 py-1.5 bg-[#FAF7F2] hover:bg-[#A65B32] hover:text-white border border-[#181513]/15 text-[10px] font-mono tracking-wider uppercase transition-colors"
+            title="Follow @vintagevoguee_in for Sunday 8 PM Drops"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A65B32] animate-pulse"></span>
+            <span>@vintagevoguee_in</span>
+          </a>
+
           <button
             onClick={() => {
               playClickSound();
@@ -83,16 +95,16 @@ export const Header: React.FC<HeaderProps> = ({ onSearchQuery, onSelectCategory,
             }}
             className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF7F2] hover:bg-[#181513] hover:text-white border border-[#181513]/20 text-[10px] font-mono tracking-widest uppercase transition-all shadow-sm"
           >
-            <Ruler className="w-3 h-3 text-[#E67E44]" />
+            <Ruler className="w-3 h-3 text-[#A65B32]" />
             <span>FIT ADVISOR</span>
           </button>
 
           <button
             onClick={() => setIsDropModalOpen(true)}
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-[#EFE7DB] hover:bg-[#E67E44] hover:text-white border border-[#181513]/15 text-[10px] font-mono tracking-widest uppercase transition-all"
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-[#EFE7DB] hover:bg-[#A65B32] hover:text-white border border-[#181513]/15 text-[10px] font-mono tracking-widest uppercase transition-all"
           >
-            <Sparkles className="w-3 h-3 text-[#E67E44] group-hover:text-white" />
-            <span>DROP #24 ALERTS</span>
+            <Sparkles className="w-3 h-3 text-[#C4975A] group-hover:text-white" />
+            <span>VAULT DROP #24</span>
           </button>
 
           {/* Wishlist Button */}

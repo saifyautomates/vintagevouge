@@ -3,11 +3,11 @@ import { Sparkles, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
 
 export const MarqueeTicker: React.FC = () => {
   const items = [
-    { text: '1-OF-1 CURATED THRIFT & ARCHIVAL WESTERN WEAR', icon: Sparkles },
-    { text: 'STEAM SANITIZED & CERTIFIED AUTHENTIC', icon: ShieldCheck },
-    { text: 'FREE EXPRESS SHIPPING PAN-INDIA OVER ₹2,999', icon: Truck },
-    { text: 'NO RESTOCKS • ONCE CLAIMED, GONE TO THE VAULT', icon: RefreshCw },
-    { text: 'FOLLOW @VINTAGEVOGUEE_IN FOR WEEKLY DROP PREVIEWS', icon: Sparkles },
+    { text: '1-OF-1 HAUTE ARCHIVAL & HERITAGE WESTERN WEAR', icon: Sparkles },
+    { text: 'EUCALYPTUS STEAM SANITIZED & ARCHIVE CERTIFIED', icon: ShieldCheck },
+    { text: 'FREE BLUE DART AIR EXPRESS PAN-INDIA OVER ₹2,999', icon: Truck },
+    { text: 'STRICT SINGLE SPECIMEN • ONCE CLAIMED, FOREVER ARCHIVED', icon: RefreshCw },
+    { text: 'FOLLOW @VINTAGEVOGUEE_IN FOR SUNDAY 8 PM VAULT DROPS', icon: Sparkles },
   ];
 
   return (
@@ -17,7 +17,7 @@ export const MarqueeTicker: React.FC = () => {
           const Icon = item.icon;
           return (
             <div key={idx} className="flex items-center gap-3">
-              <Icon className="w-3.5 h-3.5 text-[#E67E44] flex-shrink-0" />
+              <Icon className="w-3.5 h-3.5 text-[#A65B32] flex-shrink-0" />
               <span>{item.text}</span>
               <span className="text-[#181513]/30">•</span>
             </div>

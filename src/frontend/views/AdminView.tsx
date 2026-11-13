@@ -130,7 +130,7 @@ export const AdminView: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
                   { name: 'Dr. Arjun M. (Bengaluru)', piece: '14oz Denim Trucker Overshirt', rating: 5, comment: 'Museum grade quality. The Kojima selvedge patina is unbelievable. Steam sealed packaging from Kota studio was top tier.', date: 'Nov 12, 2026' },
-                  { name: 'Rhea Sengupta (Mumbai)', piece: 'Prairie Floral Midi Dress', rating: 5, comment: 'Exactly as described flat measurements. Fits like a glove. 100% authentic vintage Tokyo thrift.', date: 'Nov 10, 2026' },
+                  { name: 'Rhea Sengupta (Mumbai)', piece: 'Prairie Floral Midi Dress', rating: 5, comment: 'Exactly as described flat measurements. Fits like a glove. 100% authentic vintage Tokyo archive.', date: 'Nov 10, 2026' },
                 ].map((rev) => (
                   <div key={rev.name} className="bg-white p-5 rounded-2xl border border-[#E5E0D8] shadow-2xs space-y-2">
                     <div className="flex items-center justify-between">
@@ -164,7 +164,7 @@ export const AdminView: React.FC = () => {
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-center p-4">
                     <div>
                       <span className="px-2 py-0.5 rounded bg-[#8B2635] text-white text-[10px] font-mono font-bold uppercase">Active Drop #24 Banner</span>
-                      <h3 className="text-2xl font-serif font-bold mt-2">Japanese Selvedge & Archival Thrift</h3>
+                      <h3 className="text-2xl font-serif font-bold mt-2">Japanese Selvedge & Haute Archive</h3>
                     </div>
                   </div>
                 </div>

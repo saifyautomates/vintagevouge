@@ -189,7 +189,7 @@ var db = &Database{
 			Subtitle: "Single-Stitch Hem, Cracked Plastisol Print & Charcoal Fade", Category: "vintage-tees",
 			Era: "1994 World Tour", Origin: "San Francisco Archive • Authenticated in Kota",
 			Price: 3699, OriginalEstimatePrice: 9000, Size: "Oversized L", ConditionRating: "9.0/10 Distressed Vintage",
-			Rarity: "Rare Thrift Find", DropBatch: "Drop #24 — The Autumn Nomad",
+			Rarity: "Rare Archival Discovery", DropBatch: "Drop #24 — The Autumn Nomad",
 			Fabric: "100% Pre-Shrunk Open-End Heavy Cotton",
 			Measurements: Measurements{PitToPit: "23.0 in / 58.5 cm", Length: "29.5 in / 75 cm", Shoulders: "21.0 in / 53.3 cm", Sleeve: "8.5 in / 21.6 cm"},
 			Description: "Genuine 1994 concert memorabilia with authentic single-needle hems on sleeves and waist.",

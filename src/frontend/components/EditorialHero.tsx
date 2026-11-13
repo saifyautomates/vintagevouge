@@ -26,32 +26,43 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onExploreClick }) 
           
           {/* Left Column: High-Fashion Editorial Manifesto */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Drop Ribbon */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#181513] text-[#FAF7F2] text-[10px] font-mono tracking-widest-plus uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E67E44] animate-ping"></span>
-              <span>DROP #24 • SPECIMEN N° 01 • 1-OF-1 ONLY</span>
+            {/* Drop Ribbon & Instagram Tag */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#181513] text-[#FAF7F2] text-[10px] font-mono tracking-widest-plus uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#A65B32] animate-ping"></span>
+                <span>VAULT DROP #24 • SPECIMEN N° 01 • 1-OF-1 ONLY</span>
+              </div>
+              <a
+                href="https://www.instagram.com/vintagevoguee_in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#FAF7F2] border border-[#181513]/15 text-[#181513] text-[10px] font-mono tracking-wider uppercase hover:border-[#A65B32] transition-colors"
+              >
+                <span className="text-[#A65B32] font-bold">@vintagevoguee_in</span>
+                <span className="text-[#6B6358] hidden sm:inline">• Private Drops</span>
+              </a>
             </div>
 
             {/* Headline */}
             <div className="space-y-3">
-              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.4rem] leading-[1.02] tracking-tight text-[#181513]">
-                CURATED THRIFT & <br />
-                <span className="italic font-light text-[#E67E44]">ARCHIVAL</span> WESTERN WEAR.
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.6rem] leading-[1.0] tracking-tight text-[#181513]">
+                HAUTE ARCHIVAL & <br />
+                <span className="italic font-light text-[#A65B32]">HERITAGE</span> WESTERN ATELIER.
               </h2>
               <p className="font-serif italic text-lg sm:text-xl text-[#5C564E] tracking-wide">
-                1992 Boxy Chain-Stitched Western Camp Shirt — Sandwashed Rayon Twill.
+                1992 Japanese Draped Camp Shirt — Hand Chain-Stitched Sandwashed Rayon Twill.
               </p>
             </div>
 
             {/* Curatorial Story */}
-            <p className="font-sans text-sm sm:text-base text-[#5C564E] max-w-xl leading-relaxed font-light">
-              Every garment in the Vintage Vogue archive is an authenticated 1-of-1 discovery hand-sourced across Tokyo, Paris, and American flea markets. Deep-cleaned, steam sanitized, and measured down to the quarter-inch in our studio.
+            <p className="font-sans text-sm sm:text-base text-[#5C564E] max-w-xl leading-relaxed font-normal">
+              Every specimen in the Vintage Vogue vault is an authenticated 1-of-1 archival garment hand-selected from private Tokyo archives, Osaka collector estates, and American heritage vaults. Preserved, steam sanitized, and measured to the quarter-inch at our Sogaria Atelier, Kota.
             </p>
 
             {/* Garment Provenance Metrics */}
             <div className="grid grid-cols-3 gap-3 py-4 border-y border-[#181513]/10 max-w-lg">
               <div className="space-y-0.5">
-                <span className="block font-mono text-[9px] uppercase tracking-wider text-[#8C857B]">
+                <span className="block font-mono text-[9px] uppercase tracking-wider text-[#6B6358]">
                   Silhouette Fit
                 </span>
                 <span className="font-mono text-sm sm:text-base font-bold text-[#181513]">
@@ -59,7 +70,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onExploreClick }) 
                 </span>
               </div>
               <div className="space-y-0.5">
-                <span className="block font-mono text-[9px] uppercase tracking-wider text-[#8C857B]">
+                <span className="block font-mono text-[9px] uppercase tracking-wider text-[#6B6358]">
                   Condition Score
                 </span>
                 <span className="font-mono text-sm sm:text-base font-bold text-[#2D5A3F] flex items-center gap-1">
@@ -67,7 +78,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onExploreClick }) 
                 </span>
               </div>
               <div className="space-y-0.5">
-                <span className="block font-mono text-[9px] uppercase tracking-wider text-[#8C857B]">
+                <span className="block font-mono text-[9px] uppercase tracking-wider text-[#6B6358]">
                   Chest Measurement
                 </span>
                 <span className="font-mono text-sm sm:text-base font-bold text-[#181513]">
@@ -80,7 +91,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onExploreClick }) 
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={() => addToCart(heroPiece)}
-                className="px-8 py-4 bg-[#181513] hover:bg-[#E67E44] text-white text-xs font-mono tracking-widest-plus uppercase flex items-center gap-3 transition-all duration-300 shadow-md hover:shadow-xl group"
+                className="px-8 py-4 bg-[#181513] hover:bg-[#A65B32] text-white text-xs font-mono tracking-widest-plus uppercase flex items-center gap-3 transition-all duration-300 shadow-md hover:shadow-xl group rounded-sm btn-press"
               >
                 {isInCart ? (
                   <>

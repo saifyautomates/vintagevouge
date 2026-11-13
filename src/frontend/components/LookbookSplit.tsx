@@ -66,13 +66,13 @@ export const LookbookSplit: React.FC = () => {
     <section className="relative w-full min-h-[720px] lg:h-[92vh] lg:max-h-[960px] bg-[#181513] text-white flex flex-col justify-between overflow-hidden">
       {/* Top Editorial Floating Label */}
       <div className="absolute top-0 inset-x-0 z-30 px-6 sm:px-12 py-6 flex items-center justify-between bg-gradient-to-b from-black/85 via-black/40 to-transparent pointer-events-none">
-        <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest-plus uppercase text-white/80">
-          <Sparkles className="w-3.5 h-3.5 text-[#E67E44]" />
-          <span>AUTUMN / WINTER ARCHIVE LOOKBOOK • INTERACTIVE SHOPPING</span>
+        <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest-plus uppercase text-white/90">
+          <Sparkles className="w-3.5 h-3.5 text-[#C4975A]" />
+          <span>AUTUMN / WINTER ARCHIVE LOOKBOOK • DIRECT SPECIMEN INTERACTION</span>
         </div>
 
-        <div className="font-serif italic text-xs tracking-wider text-white/70 hidden sm:block">
-          "Tap pulsating pins to inspect & claim specimens straight from the campaign."
+        <div className="font-serif italic text-xs tracking-wider text-white/80 hidden sm:block">
+          &ldquo;Tap pulsating pins to inspect &amp; claim specimens straight from the campaign.&rdquo;
         </div>
       </div>
 
@@ -105,8 +105,8 @@ export const LookbookSplit: React.FC = () => {
                   className="relative group/pin flex items-center justify-center p-2 focus:outline-none"
                   aria-label={`Inspect ${pin.product.title}`}
                 >
-                  <span className="w-6 h-6 rounded-full bg-[#E67E44]/40 animate-ping absolute"></span>
-                  <span className="w-4 h-4 rounded-full bg-[#E67E44] border-2 border-white shadow-[0_0_12px_rgba(230,126,68,0.8)] relative z-10 flex items-center justify-center">
+                  <span className="w-6 h-6 rounded-full bg-[#A65B32]/40 animate-ping absolute"></span>
+                  <span className="w-4 h-4 rounded-full bg-[#A65B32] border-2 border-white shadow-[0_0_12px_rgba(166,91,50,0.8)] relative z-10 flex items-center justify-center">
                     <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                   </span>
                   <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-mono whitespace-nowrap text-white/80 opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none">
@@ -124,7 +124,7 @@ export const LookbookSplit: React.FC = () => {
                         className="w-12 h-14 object-cover rounded bg-black border border-white/10"
                       />
                       <div className="flex-1">
-                        <span className="text-[10px] text-[#E67E44] font-bold block">{pin.product.referenceCode}</span>
+                        <span className="text-[10px] text-[#C4975A] font-bold block">{pin.product.referenceCode}</span>
                         <h4 className="font-serif font-bold text-xs text-white line-clamp-1">{pin.product.title}</h4>
                         <span className="text-[10px] text-white/50 block">{pin.product.size} • {pin.product.era}</span>
                         <span className="text-xs font-bold text-white block mt-0.5">{formatPrice(pin.product.price)}</span>
@@ -231,8 +231,8 @@ export const LookbookSplit: React.FC = () => {
                   className="relative group/pin flex items-center justify-center p-2 focus:outline-none"
                   aria-label={`Inspect ${pin.product.title}`}
                 >
-                  <span className="w-6 h-6 rounded-full bg-[#E67E44]/40 animate-ping absolute"></span>
-                  <span className="w-4 h-4 rounded-full bg-[#E67E44] border-2 border-white shadow-[0_0_12px_rgba(230,126,68,0.8)] relative z-10 flex items-center justify-center">
+                  <span className="w-6 h-6 rounded-full bg-[#A65B32]/40 animate-ping absolute"></span>
+                  <span className="w-4 h-4 rounded-full bg-[#A65B32] border-2 border-white shadow-[0_0_12px_rgba(166,91,50,0.8)] relative z-10 flex items-center justify-center">
                     <span className="w-1.5 h-1.5 rounded-full bg-white"></span>
                   </span>
                   <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-md px-2 py-0.5 rounded text-[9px] font-mono whitespace-nowrap text-white/80 opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none">
@@ -250,7 +250,7 @@ export const LookbookSplit: React.FC = () => {
                         className="w-12 h-14 object-cover rounded bg-black border border-white/10"
                       />
                       <div className="flex-1">
-                        <span className="text-[10px] text-[#E67E44] font-bold block">{pin.product.referenceCode}</span>
+                        <span className="text-[10px] text-[#C4975A] font-bold block">{pin.product.referenceCode}</span>
                         <h4 className="font-serif font-bold text-xs text-white line-clamp-1">{pin.product.title}</h4>
                         <span className="text-[10px] text-white/50 block">{pin.product.size} • {pin.product.era}</span>
                         <span className="text-xs font-bold text-white block mt-0.5">{formatPrice(pin.product.price)}</span>

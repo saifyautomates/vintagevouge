@@ -220,8 +220,8 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           <p className="font-serif italic text-2xl text-[#5C564E]">
             No 1-of-1 pieces found matching your filter selection.
           </p>
-          <p className="font-sans text-xs text-[#8C857B] max-w-md mx-auto">
-            Our thrift drops sell out quickly. Reset your filters or turn on Drop Alerts to be first in line when new drops go live.
+          <p className="font-sans text-xs text-[#6B6358] max-w-md mx-auto">
+            Our archival vault drops sell out quickly. Reset your filters or turn on Drop Alerts to be first in line when new drops go live.
           </p>
           <button
             onClick={() => {

@@ -52,9 +52,9 @@ export const AdminMarketingStudio: React.FC = () => {
     .map((p) => `• [${p.referenceCode}] ${p.title} (${p.size}) — ${formatPrice(p.price)}`)
     .join('\n');
 
-  const mainPostCaption = `VINTAGE VOGUE INDIA 🇮🇳 DROP #24 LIVE DOSSIER\n\nAuthentic 1-of-1 curated thrift & Japanese archives. Dispatching direct from our Sogaria / Workshop Road studio in Kota, Rajasthan via Blue Dart Express Air ⚡\n\nFEATURED SPECIMENS:\n${activeSpecimens}\n\nStrict 1-of-1 availability. Once claimed, forever archived. Comment specimen reference code or tap link in bio to acquire.\n\n#VintageVogueIndia #CuratedVintage #1of1Thrift #KotaRajasthan #JapanArchive #Y2KThrift #AwwwardsDesign #SelvedgeDenim #VintageIndia`;
+  const mainPostCaption = `VINTAGE VOGUE INDIA 🇮🇳 DROP #24 LIVE DOSSIER\n\nAuthentic 1-of-1 archival Western wear & Japanese heritage garments. Dispatching direct from our Sogaria / Workshop Road atelier in Kota, Rajasthan via Blue Dart Express Air ⚡\n\nFEATURED SPECIMENS:\n${activeSpecimens}\n\nStrict 1-of-1 availability. Once claimed, forever archived. Comment specimen reference code or tap link in bio to acquire.\n\n#VintageVogueIndia #ArchivalFashion #HauteAtelier #KotaRajasthan #JapaneseArchive #SelvedgeDenim #VintageIndia #BoxyCampShirt`;
 
-  const reelCaption = `90s Shibuya Streetwear to Kota Studio Hub 🇯🇵 🇮🇳\n\nDrop #24 is officially live with 10 hand-authenticated Japanese archive specimens. Each measured with flat-laid tape. Steam sanitized with eucalyptus.\n\nComment "ARCHIVE" to receive instant secret VIP checkout link in your DMs!\n\nStudio Hub: Sogaria, Kota, Rajasthan – 324002\n#VintageVogue #ThriftIndia #JapaneseArchive #BoxyShirt #VintageIndia`;
+  const reelCaption = `90s Shibuya & Osaka Archives to Kota Studio Atelier 🇯🇵 🇮🇳\n\nDrop #24 is officially live with 10 hand-authenticated Japanese archive specimens. Each measured with flat-laid tape. Steam sanitized with eucalyptus.\n\nComment "VAULT" to receive instant secret VIP checkout link in your DMs!\n\nStudio Hub: Sogaria, Kota, Rajasthan – 324002\n#VintageVogue #ArchivalFashion #JapaneseArchive #BoxyShirt #VintageIndia #HauteWestern`;
 
   const storyAnnouncement = `DROP #24 LIVE NOW 🚨\nOnly 1 of each piece in existence.\nTap link sticker or head to website to lock your piece.\nAll prices in ₹ INR with Free Blue Dart Air Shipping over ₹2,999!`;
 

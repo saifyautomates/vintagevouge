@@ -178,15 +178,15 @@ export const ProductDetailModal: React.FC = () => {
 
             {/* Sanitization & Care Memo */}
             <div className="bg-[#EFE7DB] border border-[#181513]/15 p-4 sm:p-5 space-y-2">
-              <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-[#E67E44] font-bold">
+              <div className="flex items-center gap-2 text-xs font-mono tracking-wider text-[#A65B32] font-bold">
                 <Sparkles className="w-4 h-4" />
-                AUTHENTICATED THRIFT & CLEANING REPORT
+                AUTHENTICATED ARCHIVE & STUDIO SANITIZATION REPORT
               </div>
               <p className="font-serif italic text-sm text-[#443E38] leading-relaxed">
-                "{selectedProduct.provenance}"
+                &ldquo;{selectedProduct.provenance}&rdquo;
               </p>
-              <div className="pt-2 text-[10px] font-mono text-[#8C857B] flex items-center justify-between border-t border-[#181513]/10">
-                <span>STEAM SANITIZED WITH ORGANIC EUCALYPTUS</span>
+              <div className="pt-2 text-[10px] font-mono text-[#6B6358] flex items-center justify-between border-t border-[#181513]/10">
+                <span>EUCALYPTUS STEAM SANITIZED AT KOTA ATELIER</span>
                 <span>READY TO WEAR OUT OF BOX</span>
               </div>
             </div>
@@ -400,7 +400,7 @@ export const ProductDetailModal: React.FC = () => {
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[#2D5A3F] flex-shrink-0" />
-                  <span>100% Genuine Archival Thrift</span>
+                  <span>100% Genuine Archival Specimen</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Truck className="w-4 h-4 text-[#E67E44] flex-shrink-0" />

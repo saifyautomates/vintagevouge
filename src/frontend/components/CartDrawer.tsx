@@ -235,7 +235,7 @@ export const CartDrawer: React.FC = () => {
               Your acquisition bag is empty.
             </p>
             <p className="font-sans text-xs text-[#8C857B] max-w-xs leading-relaxed">
-              Every drop piece is 1-of-1 archival thrift. Once another collector claims a piece, it enters the permanent archive vault.
+              Every drop piece is an authentic 1-of-1 archival specimen. Once another collector claims a piece, it enters the permanent archive vault.
             </p>
             <button
               onClick={() => {

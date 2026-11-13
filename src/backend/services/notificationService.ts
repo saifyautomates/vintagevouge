@@ -33,7 +33,7 @@ Please confirm dispatch and tracking details!`;
     return `
 ========================================
          VINTAGE VOGUE INDIA
-  Curated 1-of-1 Thrift & Archives
+  Haute Archival & Heritage Atelier
   Sogaria / Workshop Rd, Kota 324002
       Instagram: @vintagevoguee_in
 ========================================

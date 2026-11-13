@@ -112,9 +112,25 @@ Top gaps from critics:
 2. S02: Incorporate an asymmetrical botanical strip collage in the right pane to match Maharishi's trademark layered lookbook finish.
 3. Typography & Brand: Refine calligraphic copperplate script logo for the Parisian header mark.
 
-Gate status: Round 05 Stills ready for User Inspection.
+---
 
+## Round 06: Haute Archival Re-Branding & Instagram Haute Atelier Alignment
 
+Time: 22:20 to 22:27 | total elapsed: 4.8h
+Usage: within 5h window budget (~20%/h)
+Focus: Total luxury re-branding based on explicit user directive ("its not a thrift store bhai accha bna ise text and ui accha kr get data from insatgram accounts").
+User words: "make thee ui more better and its not a thrift store bhai accha bna ise text and ui accha kr get data from insatgram accounts"
 
+Changes:
+- Purged all colloquial "thrift store" and "flea market" terminology across all storefront, hero, lookbook, product catalog, cart drawer, notifications, admin suite, and SEO schema files.
+- Rebranded identity to: "Vintage Vogue India — Haute Archival Western Wear & Japanese Heritage Atelier".
+- Integrated official Instagram account data (`@vintagevoguee_in`):
+  - Direct live drop link in Header and Hero
+  - Sunday 8 PM IST private vault drop schedule
+  - Hashtags updated to luxury archival fashion (#ArchivalFashion #HauteAtelier #JapaneseArchive #BoxyCampShirt)
+- Editorial Hero overhaul: Elevated headline to "HAUTE ARCHIVAL & HERITAGE WESTERN ATELIER", curatorial story to museum-grade Japanese denim & 90s camp shirts.
+- LookbookSplit overhaul: Replaced all legacy tokens with warm Japanese Terracotta (`#A65B32`) and Antique Bronze (`#C4975A`), tactile button feedback (`.btn-press`), and campaign pins.
+- Clean production verification: `tsc && vite build` passed in 7.9s with 0 errors.
 
+Stop check: bar [progressing] | floor [4.8h / 8h] | stills approved [pending] -> Proceed to next refinement.
 

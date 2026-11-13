@@ -25,7 +25,7 @@ export interface ProductRecord {
   originalEstimatePrice?: number;
   size: 'XS' | 'S' | 'Boxy M' | 'Oversized L' | 'Relaxed XL' | 'Free Size';
   conditionRating: '10/10 Deadstock' | '9.8/10 Near Mint' | '9.4/10 Authentic Patina' | '9.0/10 Distressed Vintage';
-  rarity: '1-of-1 Specimen' | 'Vault Archive' | 'Rare Thrift Find';
+  rarity: '1-of-1 Specimen' | 'Vault Archive' | 'Rare Archival Discovery';
   dropBatch: string;
   fabric: string;
   measurements: Measurements;
