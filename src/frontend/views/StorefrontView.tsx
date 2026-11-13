@@ -3,6 +3,7 @@ import { useStore } from '../context/StoreContext';
 import { DropCountdownRibbon } from '../components/DropCountdownRibbon';
 import { Header } from '../components/Header';
 import { MarqueeTicker } from '../components/MarqueeTicker';
+import { InstagramStories } from '../components/InstagramStories';
 import { EditorialHero } from '../components/EditorialHero';
 import { LookbookSplit } from '../components/LookbookSplit';
 import { ProductGrid } from '../components/ProductGrid';
@@ -33,7 +34,7 @@ export const StorefrontView: React.FC<StorefrontViewProps> = ({
   };
 
   return (
-    <div className="flex flex-col relative selection:bg-[#E67E44] selection:text-white">
+    <div className="flex flex-col relative selection:bg-[#A65B32] selection:text-white">
       {/* Top Drop Countdown Ribbon with Instagram & Indian Rupee Badge */}
       <DropCountdownRibbon />
 
@@ -47,6 +48,9 @@ export const StorefrontView: React.FC<StorefrontViewProps> = ({
 
       {/* Ticker Tape Ribbon */}
       <MarqueeTicker />
+
+      {/* Live Instagram Vault Stories & Highlights (@vintagevoguee_in) */}
+      <InstagramStories />
 
       {/* $10,000 Luxury Editorial Hero with Specimen Dossier */}
       <EditorialHero onExploreClick={handleExploreClick} />

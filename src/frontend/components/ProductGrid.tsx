@@ -79,15 +79,15 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#181513]/10">
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#E67E44] font-bold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>DROP #24 INVENTORY • 1-OF-1 PIECES</span>
+          <div className="flex items-center gap-2 text-xs font-mono tracking-widest uppercase text-[#A65B32] font-bold">
+            <Sparkles className="w-3.5 h-3.5 text-[#C4975A]" />
+            <span>DROP #24 INVENTORY • 1-OF-1 ARCHIVAL SPECIMENS</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#181513]">
             Curated Archival Catalog
           </h2>
           <p className="font-sans text-sm text-[#5C564E] max-w-xl">
-            Each piece is single-inventory. Sourced across international vintage flea markets, authenticated, steam sanitized, and measured in our studio.
+            Each specimen is 1-of-1 globally. Hand-sourced across Japanese collector vaults and heritage American ranch archives, authenticated, eucalyptus steam sanitized, and flat-laid measured in our Kota atelier.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           </span>{' '}
           of {products.length} specimens available
           {searchQuery && (
-            <div className="mt-1 flex items-center gap-2 text-[#E67E44]">
+            <div className="mt-1 flex items-center gap-2 text-[#A65B32]">
               <span>Results for "{searchQuery}"</span>
               <button onClick={onClearSearch} className="hover:underline flex items-center gap-1">
                 <RotateCcw className="w-3 h-3" /> Reset
@@ -134,7 +134,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
             onClick={() => setWishlistOnly(!wishlistOnly)}
             className={`px-3.5 py-1.5 font-mono text-[11px] tracking-wider uppercase transition-all duration-200 flex items-center gap-1.5 ${
               wishlistOnly
-                ? 'bg-[#E67E44] text-white font-bold'
+                ? 'bg-[#A65B32] text-white font-bold'
                 : 'bg-[#EFE7DB] hover:bg-[#E2D8C9] text-[#5C564E]'
             }`}
           >
@@ -230,7 +230,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
               setWishlistOnly(false);
               onClearSearch();
             }}
-            className="px-6 py-2.5 bg-[#181513] text-white font-mono text-xs tracking-wider uppercase hover:bg-[#E67E44] transition-colors"
+            className="px-6 py-2.5 bg-[#181513] text-white font-mono text-xs tracking-wider uppercase hover:bg-[#A65B32] transition-colors"
           >
             Reset All Filters
           </button>

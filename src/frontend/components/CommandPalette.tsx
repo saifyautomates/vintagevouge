@@ -162,7 +162,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       >
         {/* Search Input Bar */}
         <div className="p-4 border-b border-white/10 flex items-center gap-3">
-          <Search className="w-5 h-5 text-[#E67E44]" />
+          <Search className="w-5 h-5 text-[#C4975A]" />
           <input
             ref={inputRef}
             type="text"
@@ -211,7 +211,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       />
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[#E67E44] text-xs font-bold">{p.referenceCode}</span>
+                          <span className="text-[#C4975A] text-xs font-bold">{p.referenceCode}</span>
                           <span className="text-[10px] px-1.5 py-0.2 bg-white/10 rounded text-white/70">
                             {p.size}
                           </span>
@@ -221,7 +221,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                             </span>
                           )}
                         </div>
-                        <div className="text-xs font-serif text-white font-bold group-hover:text-[#E67E44] transition-colors">
+                        <div className="text-xs font-serif text-white font-bold group-hover:text-[#C4975A] transition-colors">
                           {p.title}
                         </div>
                         <div className="text-[10px] text-white/50">{p.era}</div>
@@ -230,7 +230,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
                     <div className="text-right">
                       <div className="text-xs font-bold text-white">{formatPrice(p.price)}</div>
-                      <span className="text-[10px] text-[#E67E44] flex items-center gap-1 group-hover:underline">
+                      <span className="text-[10px] text-[#A65B32] flex items-center gap-1 group-hover:underline">
                         <span>Inspect</span>
                         <ArrowRight className="w-3 h-3 inline" />
                       </span>
@@ -260,7 +260,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       className="flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 cursor-pointer transition-colors group"
                     >
                       <div className="flex items-center gap-2.5">
-                        <span className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#E67E44]">
+                        <span className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-[#C4975A]">
                           <Icon className="w-4 h-4" />
                         </span>
                         <span className="text-xs text-white/90 group-hover:text-white font-mono">
@@ -291,7 +291,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             <span>↵ Select</span>
             <span>ESC Close</span>
           </div>
-          <span className="text-[#E67E44]">Vintage Vogue India Omnichannel Engine</span>
+          <span className="text-[#C4975A]">Vintage Vogue India Omnichannel Engine</span>
         </div>
       </div>
     </div>

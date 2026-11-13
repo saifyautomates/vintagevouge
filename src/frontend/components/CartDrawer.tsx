@@ -148,7 +148,7 @@ export const CartDrawer: React.FC = () => {
         {/* Drawer Header */}
         <div className="px-6 py-4 border-b border-[#181513]/10 flex justify-between items-center bg-[#EFE7DB]">
           <div className="flex items-center gap-2.5">
-            <ShoppingBag className="w-4 h-4 text-[#E67E44]" />
+            <ShoppingBag className="w-4 h-4 text-[#A65B32]" />
             <h3 className="font-mono text-xs tracking-widest-plus uppercase font-bold text-[#181513]">
               ACQUISITION BAG ({cart.length})
             </h3>
@@ -172,7 +172,7 @@ export const CartDrawer: React.FC = () => {
               : 'bg-[#181513] text-[#FAF7F2]'
           }`}>
             <div className="flex items-center gap-1.5 font-bold">
-              <Clock className={`w-3.5 h-3.5 ${holdSeconds === 0 ? 'text-red-400' : 'text-[#E67E44] animate-spin'}`} />
+              <Clock className={`w-3.5 h-3.5 ${holdSeconds === 0 ? 'text-red-400' : 'text-[#C4975A] animate-spin'}`} />
               <span>
                 {holdSeconds === 0 ? 'HOLD LAPSED INTO OPEN POOL:' : '1-OF-1 SPECIMEN HOLD:'}
               </span>
@@ -190,7 +190,7 @@ export const CartDrawer: React.FC = () => {
                     setHoldSeconds(600);
                     showToast('Archival reservation extended for 10 minutes.');
                   }}
-                  className="px-2 py-0.5 bg-[#E67E44] text-white rounded text-[10px] font-bold uppercase tracking-wider hover:bg-orange-600 transition-colors"
+                  className="px-2 py-0.5 bg-[#A65B32] text-white rounded text-[10px] font-bold uppercase tracking-wider hover:bg-[#8B2635] transition-colors"
                 >
                   Extend +10m
                 </button>
@@ -206,7 +206,7 @@ export const CartDrawer: React.FC = () => {
           <div className="px-6 py-3 bg-[#EAE2D3] border-b border-[#181513]/10 text-xs font-mono">
             <div className="flex justify-between items-center mb-1 text-[11px]">
               <span className="flex items-center gap-1.5 font-bold text-[#181513]">
-                <Truck className="w-3.5 h-3.5 text-[#E67E44]" />
+                <Truck className="w-3.5 h-3.5 text-[#A65B32]" />
                 {isFreeShipping ? (
                   <span className="text-[#2D5A3F] font-bold">🎉 Unlocked Free Pan-India Express Delivery!</span>
                 ) : (
@@ -217,7 +217,7 @@ export const CartDrawer: React.FC = () => {
             </div>
             <div className="w-full h-1.5 bg-[#181513]/10 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-gradient-to-r from-[#E67E44] to-emerald-600 transition-all duration-500 rounded-full"
+                className="h-full bg-gradient-to-r from-[#A65B32] to-emerald-600 transition-all duration-500 rounded-full"
                 style={{ width: `${shippingProgress}%` }}
               />
             </div>
@@ -229,7 +229,7 @@ export const CartDrawer: React.FC = () => {
           /* Empty Bag State */
           <div className="flex-1 flex flex-col items-center justify-center p-8 text-center space-y-4">
             <div className="w-16 h-16 rounded-full bg-[#EFE7DB] border border-[#181513]/10 flex items-center justify-center text-[#8C857B]">
-              <ShoppingBag className="w-7 h-7 text-[#E67E44]" />
+              <ShoppingBag className="w-7 h-7 text-[#A65B32]" />
             </div>
             <p className="font-serif italic text-2xl text-[#5C564E]">
               Your acquisition bag is empty.
@@ -244,7 +244,7 @@ export const CartDrawer: React.FC = () => {
                 const el = document.getElementById('archive-catalog');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="mt-2 px-6 py-2.5 bg-[#181513] text-white font-mono text-xs tracking-widest uppercase hover:bg-[#E67E44] transition-colors rounded-lg shadow-md"
+              className="mt-2 px-6 py-2.5 bg-[#181513] text-white font-mono text-xs tracking-widest uppercase hover:bg-[#A65B32] transition-colors rounded-lg shadow-md"
             >
               Browse Drop #24 Catalog
             </button>
@@ -342,7 +342,7 @@ export const CartDrawer: React.FC = () => {
                                 removeFromCart(item.product.id);
                                 showToast('Moved specimen to your saved wishlist.');
                               }}
-                              className="px-2.5 py-1 bg-[#181513] hover:bg-[#E67E44] text-white rounded text-[10px] font-mono font-bold uppercase tracking-wider transition-colors"
+                              className="px-2.5 py-1 bg-[#181513] hover:bg-[#A65B32] text-white rounded text-[10px] font-mono font-bold uppercase tracking-wider transition-colors"
                             >
                               Move to Wishlist
                             </button>
@@ -351,7 +351,7 @@ export const CartDrawer: React.FC = () => {
                       ) : (
                         /* In-Stock Tag & Unit Price */
                         <div className="flex justify-between items-center pt-2">
-                          <span className="text-[10px] font-mono font-bold text-[#E67E44] bg-[#E67E44]/10 border border-[#E67E44]/25 px-2 py-0.5 rounded">
+                          <span className="text-[10px] font-mono font-bold text-[#A65B32] bg-[#A65B32]/10 border border-[#A65B32]/25 px-2 py-0.5 rounded">
                             1-OF-1 SPECIMEN (QTY: 1)
                           </span>
 
@@ -369,8 +369,8 @@ export const CartDrawer: React.FC = () => {
               {pairedRecommendations.length > 0 && (
                 <div className="pt-6 mt-4 border-t border-[#181513]/10">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-[10px] font-bold text-[#E67E44] uppercase tracking-wider flex items-center gap-1.5">
-                      <Sparkles className="w-3 h-3" />
+                    <span className="font-mono text-[10px] font-bold text-[#A65B32] uppercase tracking-wider flex items-center gap-1.5">
+                      <Sparkles className="w-3 h-3 text-[#C4975A]" />
                       CURATOR'S ARCHIVAL PAIRING
                     </span>
                     <span className="text-[10px] font-mono text-[#5C564E]">Drop #24 Aesthetic Match</span>
@@ -380,7 +380,7 @@ export const CartDrawer: React.FC = () => {
                     {pairedRecommendations.slice(0, 2).map((rec) => (
                       <div
                         key={rec.id}
-                        className="p-2.5 bg-[#FAF7F2] border border-[#181513]/15 rounded-lg flex items-center justify-between gap-3 group hover:border-[#E67E44] transition-all"
+                        className="p-2.5 bg-[#FAF7F2] border border-[#181513]/15 rounded-lg flex items-center justify-between gap-3 group hover:border-[#A65B32] transition-all"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
                           <img
@@ -407,7 +407,7 @@ export const CartDrawer: React.FC = () => {
                             playClickSound();
                             addToCart(rec);
                           }}
-                          className="px-2.5 py-1.5 bg-[#181513] hover:bg-[#E67E44] text-white text-[10px] font-mono uppercase font-bold tracking-wider rounded transition-colors whitespace-nowrap flex items-center gap-1"
+                          className="px-2.5 py-1.5 bg-[#181513] hover:bg-[#A65B32] text-white text-[10px] font-mono uppercase font-bold tracking-wider rounded transition-colors whitespace-nowrap flex items-center gap-1"
                         >
                           <Plus className="w-3 h-3" />
                           <span>Claim 1-of-1</span>
@@ -425,7 +425,7 @@ export const CartDrawer: React.FC = () => {
               {/* Pincode Quick Delivery Estimator */}
               <div className="bg-[#FAF7F2] p-2.5 rounded-lg border border-[#181513]/15 space-y-1 text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-[#E67E44]" />
+                  <MapPin className="w-3.5 h-3.5 text-[#A65B32]" />
                   <input
                     type="text"
                     maxLength={6}
@@ -446,7 +446,7 @@ export const CartDrawer: React.FC = () => {
               {/* Complimentary Wax Seal Gift Wrapping Toggle */}
               <div 
                 onClick={() => setWaxSealGift(!waxSealGift)}
-                className="flex items-center justify-between text-xs font-mono p-2.5 bg-[#FAF7F2] rounded-lg border border-[#181513]/15 cursor-pointer hover:border-[#E67E44] transition-colors"
+                className="flex items-center justify-between text-xs font-mono p-2.5 bg-[#FAF7F2] rounded-lg border border-[#181513]/15 cursor-pointer hover:border-[#A65B32] transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-3.5 h-3.5 text-[#991B1B]" />
@@ -468,12 +468,12 @@ export const CartDrawer: React.FC = () => {
                     placeholder="Promo (VOGUE10 / KOTA24)"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#181513]/20 pl-9 pr-3 py-1.5 text-xs font-mono uppercase tracking-wider outline-none focus:border-[#E67E44] rounded"
+                    className="w-full bg-[#FAF7F2] border border-[#181513]/20 pl-9 pr-3 py-1.5 text-xs font-mono uppercase tracking-wider outline-none focus:border-[#A65B32] rounded"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 bg-[#181513] text-[#FAF7F2] text-[10px] font-mono tracking-widest uppercase hover:bg-[#E67E44] transition-colors rounded font-bold"
+                  className="px-4 py-1.5 bg-[#181513] text-[#FAF7F2] text-[10px] font-mono tracking-widest uppercase hover:bg-[#A65B32] transition-colors rounded font-bold"
                 >
                   Apply
                 </button>

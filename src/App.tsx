@@ -42,7 +42,7 @@ const AppShell: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FAF7F2] text-[#181513] relative selection:bg-[#E67E44] selection:text-white">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#181513] relative selection:bg-[#A65B32] selection:text-white">
       {/* Awwwards Film Grain / Organic Noise Texture Overlay */}
       <NoiseOverlay />
 
@@ -92,8 +92,8 @@ const AppShell: React.FC = () => {
 
       {/* Global Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-20 right-6 z-50 bg-[#181513] text-[#FAF7F2] px-4 py-3 border border-[#E67E44]/50 shadow-2xl flex items-center gap-3 animate-slideUp">
-          <div className="w-5 h-5 rounded-full bg-[#E67E44] text-white flex items-center justify-center flex-shrink-0">
+        <div className="fixed bottom-20 right-6 z-50 bg-[#181513] text-[#FAF7F2] px-4 py-3 border border-[#A65B32]/50 shadow-2xl flex items-center gap-3 animate-slideUp">
+          <div className="w-5 h-5 rounded-full bg-[#A65B32] text-white flex items-center justify-center flex-shrink-0">
             <Check className="w-3 h-3" />
           </div>
           <span className="font-mono text-xs tracking-wider">{toastMessage}</span>
