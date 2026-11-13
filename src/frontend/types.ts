@@ -1,6 +1,6 @@
-import { ProductRecord, Category, Measurements } from '../database/schema';
+import { ProductRecord, Category, Measurements, OrderRecord, OrderItem, OrderStatus, OrderChannel, PaymentMethod } from '../database/schema';
 
-export type { Category, Measurements };
+export type { Category, Measurements, OrderRecord, OrderItem, OrderStatus, OrderChannel, PaymentMethod };
 export type Product = ProductRecord;
 
 export interface CartItem {

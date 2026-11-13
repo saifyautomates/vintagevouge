@@ -1,29 +1,50 @@
 import React from 'react';
 import {
-  LayoutDashboard,
-  Package,
+  BarChart3,
+  CreditCard,
   ShoppingBag,
-  Store,
-  Clock,
-  Instagram,
+  RotateCcw,
+  Package,
+  Layers,
+  LayoutGrid,
+  Users,
+  Tag,
+  Star,
+  Images,
+  FolderOpen,
+  MessageSquare,
+  MessageSquareText,
+  Megaphone,
+  FileText,
   Settings,
-  ExternalLink,
-  ShieldCheck,
+  Shield,
+  Eye,
+  LogOut,
   MapPin,
-  Sparkles,
-  ChevronRight
+  Sparkles
 } from 'lucide-react';
 import { useStore } from '../../context/StoreContext';
 import { playClickSound } from '../../utils/audio';
 
 export type AdminTab =
-  | 'overview'
-  | 'inventory'
+  | 'dashboard'
+  | 'billing'
   | 'orders'
-  | 'pos-audit'
-  | 'drop-control'
+  | 'returns'
+  | 'products'
+  | 'categories'
+  | 'sections'
+  | 'customers'
+  | 'coupons'
+  | 'reviews'
+  | 'hero'
+  | 'media'
+  | 'sms'
+  | 'queries'
   | 'marketing'
-  | 'settings';
+  | 'pages'
+  | 'settings'
+  | 'admins';
 
 interface AdminSidebarProps {
   activeTab: AdminTab;
@@ -40,47 +61,60 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
 }) => {
   const { setViewMode } = useStore();
 
-  const navItems: { id: AdminTab; label: string; icon: React.ElementType; badge?: string | number }[] = [
-    { id: 'overview', label: 'Executive Overview', icon: LayoutDashboard },
-    { id: 'inventory', label: '1-of-1 Catalog', icon: Package, badge: inStockCount },
-    { id: 'orders', label: 'Orders & Air Dispatch', icon: ShoppingBag, badge: totalOrdersCount },
-    { id: 'pos-audit', label: 'Kota POS Counter Audit', icon: Store },
-    { id: 'drop-control', label: 'Drop #24 Launchpad', icon: Clock, badge: 'GATE' },
-    { id: 'marketing', label: 'Instagram Caption Studio', icon: Instagram },
-    { id: 'settings', label: 'Studio Configuration', icon: Settings },
+  const navigationItems: {
+    id: AdminTab;
+    label: string;
+    icon: React.ElementType;
+    badge?: string | number;
+    badgeColor?: string;
+  }[] = [
+    { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+    { id: 'billing', label: 'Offline Billing', icon: CreditCard },
+    { id: 'orders', label: 'Online Orders', icon: ShoppingBag, badge: totalOrdersCount > 0 ? totalOrdersCount : 1, badgeColor: 'bg-[#E11D48] text-white' },
+    { id: 'returns', label: 'Online Returns', icon: RotateCcw },
+    { id: 'products', label: 'Products', icon: Package },
+    { id: 'categories', label: 'Categories', icon: Layers },
+    { id: 'sections', label: 'Homepage Sections', icon: LayoutGrid },
+    { id: 'customers', label: 'Customers', icon: Users },
+    { id: 'coupons', label: 'Coupons', icon: Tag },
+    { id: 'reviews', label: 'Reviews', icon: Star },
+    { id: 'hero', label: 'Hero Media', icon: Images },
+    { id: 'media', label: 'Media Library', icon: FolderOpen },
+    { id: 'sms', label: 'SMS Logs', icon: MessageSquare },
+    { id: 'queries', label: 'Queries', icon: MessageSquareText },
+    { id: 'marketing', label: 'Marketing', icon: Megaphone },
+    { id: 'pages', label: 'Pages & Policies', icon: FileText },
+    { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'admins', label: 'Admins', icon: Shield },
   ];
 
   return (
-    <aside className="w-64 bg-[#141210] border-r border-white/10 text-white flex flex-col justify-between flex-shrink-0 min-h-screen">
-      {/* Top Header & Brand */}
-      <div>
-        <div className="p-5 border-b border-white/10">
+    <aside className="w-60 bg-[#FAF7F2] border-r border-[#EAE3D4] text-[#181513] flex flex-col justify-between flex-shrink-0 min-h-screen select-none font-sans">
+      {/* Brand & Nav List */}
+      <div className="flex-1 flex flex-col min-h-0">
+        {/* Brand Header */}
+        <div className="p-4 pb-3 border-b border-[#EAE3D4] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-[#E67E44] flex items-center justify-center font-serif font-bold text-white shadow-lg text-sm">
+            <div className="w-8 h-8 rounded-lg bg-[#8B2635] text-white flex items-center justify-center font-serif font-bold text-sm shadow-sm">
               VV
             </div>
             <div>
-              <h2 className="font-serif text-sm font-bold tracking-wider text-white">
-                VINTAGE VOGUE
+              <h2 className="font-serif text-sm font-bold tracking-tight text-[#181513]">
+                Vintage Vogue
               </h2>
-              <span className="text-[10px] font-mono text-[#E67E44] tracking-widest uppercase block font-semibold">
-                ADMIN COMMAND SUITE
+              <span className="text-[9px] font-mono text-[#8B2635] tracking-widest uppercase font-bold block">
+                Executive Suite
               </span>
             </div>
           </div>
-
-          <div className="mt-3.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 flex items-center justify-between text-[10px] font-mono">
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>KOTA HUB LIVE</span>
-            </span>
-            <span className="text-white/40">v3.4.0</span>
-          </div>
+          <span className="text-[9px] font-mono text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">
+            Live
+          </span>
         </div>
 
-        {/* Navigation Items */}
-        <nav className="p-3 space-y-1">
-          {navItems.map((item) => {
+        {/* Scrollable Navigation Items */}
+        <nav className="flex-1 overflow-y-auto px-2.5 py-3 space-y-0.5 text-xs">
+          {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             return (
@@ -90,20 +124,20 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
                   playClickSound();
                   onSelectTab(item.id);
                 }}
-                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl font-mono text-xs transition-all duration-200 ${
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-xl font-medium transition-all duration-150 text-left ${
                   isActive
-                    ? 'bg-[#E67E44] text-white font-bold shadow-md shadow-[#E67E44]/20'
-                    : 'text-white/70 hover:text-white hover:bg-white/5'
+                    ? 'bg-[#8B2635] text-white font-semibold shadow-xs'
+                    : 'text-[#5C564E] hover:text-[#181513] hover:bg-[#F2ECE1]'
                 }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-white/60'}`} />
-                  <span>{item.label}</span>
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-white' : 'text-[#7D7569]'}`} />
+                  <span className="truncate">{item.label}</span>
                 </div>
                 {item.badge !== undefined && (
                   <span
-                    className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${
-                      isActive ? 'bg-black/30 text-white' : 'bg-white/10 text-white/70'
+                    className={`ml-1.5 px-1.5 py-0.2 rounded-full text-[10px] font-bold shrink-0 ${
+                      item.badgeColor || (isActive ? 'bg-white text-[#8B2635]' : 'bg-red-500 text-white')
                     }`}
                   >
                     {item.badge}
@@ -115,25 +149,35 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
         </nav>
       </div>
 
-      {/* Footer & Storefront Switcher */}
-      <div className="p-4 border-t border-white/10 space-y-3">
+      {/* Bottom Actions */}
+      <div className="p-3 border-t border-[#EAE3D4] bg-[#F7F3EB] space-y-1 text-xs">
         <button
           onClick={() => {
             playClickSound();
             setViewMode('storefront');
           }}
-          className="w-full py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-white/90 flex items-center justify-center gap-2 transition-all group"
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-[#5C564E] hover:text-[#181513] hover:bg-[#EAE3D4]/80 transition-colors"
         >
-          <span>View Live Storefront</span>
-          <ExternalLink className="w-3.5 h-3.5 text-[#E67E44] group-hover:translate-x-0.5 transition-transform" />
+          <Eye className="w-4 h-4 text-[#7D7569]" />
+          <span className="font-medium">View live store</span>
         </button>
 
-        <div className="px-2 pt-1 flex items-center gap-2 text-[10px] font-mono text-white/40">
-          <MapPin className="w-3 h-3 text-[#E67E44]" />
-          <span>Sogaria Studio, Kota, RJ – 324002</span>
+        <button
+          onClick={() => {
+            playClickSound();
+            setViewMode('storefront');
+          }}
+          className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-[#8B2635] hover:bg-rose-50 transition-colors"
+        >
+          <LogOut className="w-4 h-4 text-[#8B2635]" />
+          <span className="font-semibold">Sign out</span>
+        </button>
+
+        <div className="px-3 pt-1 text-[10px] font-mono text-[#7D7569] flex items-center gap-1.5">
+          <MapPin className="w-2.5 h-2.5 text-[#8B2635]" />
+          <span>Sogaria Hub, Kota 324002</span>
         </div>
       </div>
     </aside>
   );
 };
-
