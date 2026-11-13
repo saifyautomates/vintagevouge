@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+tone_instructions: "Be concise, analytical, and professional. Prioritize e-commerce transactional safety, 1-of-1 archival specimen inventory locking, strict Indian Rupee (INR) currency formatting, and mobile-first 60fps UX responsiveness."
+early_access: false
+
+reviews:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - "master"
+      - "main"
+  tools:
+    ast-grep:
+      enabled: true
+    shellcheck:
+      enabled: true
+    biome:
+      enabled: true
+  path_instructions:
+    - path: "src/database/**"
+      instructions: "Ensure atomic 1-of-1 specimen deductions, transactional rollbacks, and schema integrity are never bypassed. Products must strictly adhere to Indian Rupee (INR) pricing."
+    - path: "src/backend/**"
+      instructions: "Verify payment calculations, coupon deductions (flat ₹ vs percentage), and checkout service invariants are mathematically exact."
+    - path: "src/frontend/**"
+      instructions: "Enforce mobile-first touch ergonomics, accessibility (Escape key, backdrop dismiss, aria-labels), and error-free state hydration from localStorage."
+
+chat:
+  auto_reply: true
