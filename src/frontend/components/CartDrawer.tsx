@@ -287,20 +287,20 @@ export const CartDrawer: React.FC = () => {
                     <div className="flex-1 min-w-0 space-y-1">
                       <div className="flex justify-between items-start">
                         <span className={`font-mono text-[10px] tracking-wider font-bold ${
-                          isOutOfStock ? 'text-red-600' : 'text-[#E67E44]'
+                          isOutOfStock ? 'text-red-600' : 'text-[#A65B32]'
                         }`}>
-                          {isOutOfStock ? '⚠️ OUT OF STOCK • 1-OF-1' : `1-OF-1 • ${item.product.size}`}
+                          {isOutOfStock ? '⚠️ HOLD LAPSED • 1-OF-1' : `1-OF-1 • ${item.product.size}`}
                         </span>
                         <button
                           onClick={() => {
                             playClickSound();
                             removeFromCart(item.product.id);
                           }}
-                          className="text-[#8C857B] hover:text-[#8E2B2B] transition-colors p-1"
+                          className="text-[#6B6358] hover:text-[#8E2B2B] transition-colors min-w-[36px] min-h-[36px] flex items-center justify-center p-1"
                           title="Remove piece"
                           aria-label="Remove piece"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
 
@@ -520,22 +520,35 @@ export const CartDrawer: React.FC = () => {
                 </div>
               </div>
 
-              {/* Checkout CTAs */}
+              {/* Checkout CTAs with 1-Click Auto-Renewal */}
               <div className="space-y-2">
-                {cart.some(item => !item.product.inStock || holdSeconds === 0) ? (
+                {cart.some(item => !item.product.inStock) ? (
                   <button
                     disabled
-                    className="w-full py-4 bg-red-950/80 text-red-200 text-xs font-mono tracking-wider uppercase flex items-center justify-center gap-2 rounded-xl font-bold cursor-not-allowed border border-red-500/40"
+                    className="w-full py-4 bg-red-950/80 text-red-200 text-xs font-mono tracking-wider uppercase flex items-center justify-center gap-2 rounded-sm font-bold cursor-not-allowed border border-red-500/40"
                   >
-                    <span>CANNOT CHECKOUT • REMOVE OUT-OF-STOCK PIECE</span>
+                    <span>CANNOT CHECKOUT • REMOVE CLAIMED SPECIMEN</span>
+                  </button>
+                ) : holdSeconds === 0 ? (
+                  <button
+                    onClick={() => {
+                      playClickSound();
+                      setHoldSeconds(600);
+                      openCheckout();
+                    }}
+                    className="w-full py-4 bg-[#A65B32] hover:bg-[#8E4B27] text-white text-xs font-mono tracking-widest-plus uppercase flex items-center justify-center gap-2 rounded-sm font-bold shadow-xl animate-pulse btn-press"
+                  >
+                    <Clock className="w-4 h-4" />
+                    <span>RE-RESERVE HOLD (+10M) & CHECKOUT</span>
                   </button>
                 ) : (
                   <button
+                    data-cursor="CLAIM"
                     onClick={() => {
                       playClickSound();
                       openCheckout();
                     }}
-                    className="w-full py-4 bg-[#181513] hover:bg-[#E67E44] text-[#FAF7F2] text-xs font-mono tracking-widest-plus uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-xl group rounded-xl font-bold btn-press"
+                    className="w-full py-4 bg-[#181513] hover:bg-[#A65B32] text-[#FAF7F2] text-xs font-mono tracking-widest-plus uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-xl group rounded-sm font-bold btn-press"
                   >
                     <span>PROCEED TO INSTANT CHECKOUT</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -551,14 +564,14 @@ export const CartDrawer: React.FC = () => {
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] text-[11px] font-mono tracking-wider uppercase flex items-center justify-center gap-2 border border-[#25D366]/30 transition-colors rounded-xl font-medium"
+                  className="w-full py-2.5 bg-[#25D366]/10 hover:bg-[#25D366]/20 text-[#128C7E] text-[11px] font-mono tracking-wider uppercase flex items-center justify-center gap-2 border border-[#25D366]/30 transition-colors rounded-sm font-medium btn-press"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
                   <span>Order via WhatsApp Direct (+91 98290 12345)</span>
                 </a>
               </div>
 
-              <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-[#8C857B]">
+              <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-[#6B6358]">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#2D5A3F]" />
                 <span>Encrypted Bharat UPI / Cards • 100% Authentic Guaranteed</span>
               </div>

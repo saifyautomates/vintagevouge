@@ -17,6 +17,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
@@ -29,6 +30,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   const handleMouseEnter = () => {
+    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
     setIsHovered(true);
     playHoverSound();
   };
@@ -40,6 +42,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <article
+      data-cursor="INSPECT"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -49,7 +52,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           : 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
         transition: isHovered ? 'transform 0.12s ease-out' : 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)',
       }}
-      className="group relative flex flex-col bg-[#FAF7F2] border border-[#181513]/12 hover:border-[#181513]/40 transition-shadow duration-300 hover:shadow-2xl will-change-transform rounded-sm overflow-hidden"
+      className="group relative flex flex-col bg-[#FAF7F2] border border-[#181513]/12 hover:border-[#181513]/40 transition-shadow duration-300 hover:shadow-2xl will-change-transform rounded-sm overflow-hidden card-lift"
     >
       {/* Dynamic Holographic Specular Glare */}
       {isHovered && (
@@ -63,12 +66,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Top Header Strip: Ref Code & Size */}
       <div className="p-3 pb-2 flex justify-between items-center text-[10px] font-mono tracking-wider border-b border-[#181513]/8 text-[#5C564E] bg-[#F4EFE6]">
         <div className="flex items-center gap-1.5 font-semibold text-[#181513]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#E67E44]"></span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#A65B32]"></span>
           <span>{product.referenceCode}</span>
         </div>
-        <span className="bg-[#181513] text-[#FAF7F2] px-2 py-0.5 font-bold tracking-widest text-[9px]">
-          {product.size}
-        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[9px] font-mono text-[#6B6358] uppercase hidden sm:inline">Fits Modern {product.size}</span>
+          <span className="bg-[#181513] text-[#FAF7F2] px-2 py-0.5 font-bold tracking-widest text-[9px] rounded-none">
+            {product.size}
+          </span>
+        </div>
       </div>
 
       {/* Main Image Viewport with Natural Aspect Ratio */}
@@ -107,7 +113,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="absolute top-2.5 left-2.5 z-10">
           {product.inStock ? (
             <span className="bg-[#181513]/90 backdrop-blur-sm text-[#FAF7F2] text-[9px] font-mono tracking-widest uppercase px-2 py-0.5 flex items-center gap-1 shadow">
-              <Sparkles className="w-2.5 h-2.5 text-[#E67E44]" /> 1-OF-1
+              <Sparkles className="w-2.5 h-2.5 text-[#C4975A]" /> 1-OF-1
             </span>
           ) : (
             <span className="bg-red-700 text-white text-[9px] font-mono font-bold tracking-widest uppercase px-2.5 py-0.5 shadow">
@@ -125,7 +131,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
 
-        {/* Wishlist Button with Haptic Sound */}
+        {/* Wishlist Button with Haptic Sound and Accessible 44px Touch Target */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -136,15 +142,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             }
             toggleWishlist(product.id);
           }}
-          className={`absolute top-2.5 right-2.5 z-10 p-2 rounded-full backdrop-blur-md transition-all shadow-sm ${
+          className={`absolute top-2.5 right-2.5 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full backdrop-blur-md transition-all shadow-sm ${
             isWishlisted
-              ? 'bg-[#E67E44] text-white scale-110'
-              : 'bg-white/80 text-[#181513] hover:bg-white hover:text-[#E67E44]'
+              ? 'bg-[#A65B32] text-white scale-105'
+              : 'bg-white/85 text-[#181513] hover:bg-white hover:text-[#A65B32]'
           }`}
           title="Save piece"
           aria-label="Save piece"
         >
-          <Heart className={`w-3.5 h-3.5 ${isWishlisted ? 'fill-current' : ''}`} />
+          <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
         </button>
 
         {/* Hover Action Pill Strip */}
@@ -154,7 +160,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               e.stopPropagation();
               setSelectedProduct(product);
             }}
-            className="flex-1 py-2 px-3 bg-[#FAF7F2]/95 backdrop-blur-sm text-[#181513] text-[10px] font-mono tracking-widest uppercase hover:bg-[#181513] hover:text-white transition-all shadow-md border border-[#181513]/15 flex items-center justify-center gap-1.5"
+            className="flex-1 py-2 px-3 bg-[#FAF7F2]/95 backdrop-blur-sm text-[#181513] text-[10px] font-mono tracking-widest uppercase hover:bg-[#181513] hover:text-white transition-all shadow-md border border-[#181513]/15 flex items-center justify-center gap-1.5 btn-press"
           >
             <Eye className="w-3 h-3" /> Quick View
           </button>
@@ -165,10 +171,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               e.stopPropagation();
               if (product.inStock) addToCart(product);
             }}
-            className={`flex-1 py-2 px-3 text-white text-[10px] font-mono tracking-widest uppercase transition-all shadow-md flex items-center justify-center gap-1.5 ${
+            className={`flex-1 py-2 px-3 text-white text-[10px] font-mono tracking-widest uppercase transition-all shadow-md flex items-center justify-center gap-1.5 btn-press ${
               !product.inStock
                 ? 'bg-black/50 cursor-not-allowed opacity-60'
-                : 'bg-[#181513] hover:bg-[#E67E44]'
+                : 'bg-[#181513] hover:bg-[#A65B32]'
             }`}
           >
             {isInCart ? <Check className="w-3 h-3 text-emerald-300" /> : <Plus className="w-3 h-3" />}
@@ -190,7 +196,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <h3 
             onClick={() => setSelectedProduct(product)}
-            className="font-serif text-lg sm:text-xl font-bold text-[#181513] hover:text-[#E67E44] cursor-pointer transition-colors leading-snug line-clamp-1"
+            className="font-serif text-lg sm:text-xl font-bold text-[#181513] hover:text-[#A65B32] cursor-pointer transition-colors leading-snug line-clamp-1"
           >
             {product.title}
           </h3>
@@ -208,12 +214,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 {formatPrice(product.price)}
               </span>
               {product.originalEstimatePrice && (
-                <span className="font-mono text-[10px] text-[#8C857B] line-through">
+                <span className="font-mono text-[10px] text-[#6B6358] line-through">
                   {formatPrice(product.originalEstimatePrice)}
                 </span>
               )}
             </div>
-            <span className="block text-[9px] font-mono text-[#E67E44] font-semibold uppercase tracking-wider">
+            <span className="block text-[9px] font-mono text-[#A65B32] font-semibold uppercase tracking-wider">
               📏 {product.measurements.pitToPit.split('/')[0]} Chest • {product.measurements.length.split('/')[0]} L
             </span>
           </div>
@@ -223,12 +229,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             onClick={() => {
               if (product.inStock) addToCart(product);
             }}
-            className={`px-3.5 py-2 text-[10px] font-mono tracking-widest uppercase transition-colors ${
+            className={`px-3.5 py-2 text-[10px] font-mono tracking-widest uppercase transition-colors rounded-none btn-press ${
               !product.inStock
                 ? 'bg-black/20 text-black/40 cursor-not-allowed'
                 : isInCart
                 ? 'bg-[#2D5A3F] text-white'
-                : 'bg-[#181513] hover:bg-[#E67E44] text-white'
+                : 'bg-[#181513] hover:bg-[#A65B32] text-white'
             }`}
           >
             {!product.inStock ? 'Sold' : isInCart ? 'In Bag' : 'Claim'}

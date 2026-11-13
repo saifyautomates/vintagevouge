@@ -61,13 +61,15 @@ export const CustomCursor: React.FC = () => {
       {/* Outer Glow Halo */}
       <div
         className={`rounded-full flex items-center justify-center transition-all duration-200 border ${
-          cursorState.isHovered
-            ? 'w-16 h-16 bg-[#181513]/90 text-white border-[#E67E44] backdrop-blur-md shadow-[0_0_20px_rgba(230,126,68,0.4)] scale-110'
-            : 'w-4 h-4 bg-[#E67E44]/70 border-white/60 shadow-[0_0_10px_rgba(230,126,68,0.6)]'
+          cursorState.label
+            ? 'w-20 h-20 bg-[#181513]/92 text-white border-[#C4975A] backdrop-blur-md shadow-[0_0_24px_rgba(196,151,90,0.35)] scale-105'
+            : cursorState.isHovered
+            ? 'w-10 h-10 bg-[#181513]/80 text-white border-[#C4975A]/80 backdrop-blur-sm shadow-[0_0_15px_rgba(196,151,90,0.3)] scale-100'
+            : 'w-3.5 h-3.5 bg-[#A65B32]/85 border-white/80 shadow-[0_0_8px_rgba(166,91,50,0.4)]'
         }`}
       >
         {cursorState.label && (
-          <span className="text-[9px] font-mono tracking-widest uppercase font-bold text-[#E67E44] animate-fadeIn text-center px-1">
+          <span className="text-[8px] font-mono tracking-[0.25em] uppercase font-bold text-[#C4975A] animate-fadeIn text-center px-1">
             {cursorState.label}
           </span>
         )}

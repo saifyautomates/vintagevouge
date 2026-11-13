@@ -439,8 +439,8 @@ export const ExpressCheckoutModal: React.FC = () => {
                     {paymentMethod === 'UPI' && (
                       <div className="mt-4 pt-4 border-t border-[#181513]/10 space-y-4">
                         {/* Dynamic UPI QR Display */}
-                        <div className="flex flex-col sm:flex-row items-center gap-4 bg-white p-4 rounded-lg border border-[#181513]/10">
-                          <div className="w-32 h-32 bg-[#FAF7F2] p-2 border border-[#181513]/15 rounded-lg flex items-center justify-center flex-shrink-0 shadow-inner">
+                        <div className="flex flex-col sm:flex-row items-center gap-4 bg-white p-4 rounded-sm border border-[#181513]/10">
+                          <div className="w-32 h-32 bg-[#FAF7F2] p-2 border border-[#181513]/15 rounded-sm flex items-center justify-center flex-shrink-0 shadow-inner">
                             <QrCode className="w-24 h-24 text-[#181513]" />
                           </div>
                           <div className="space-y-2 text-center sm:text-left flex-1">
@@ -448,21 +448,49 @@ export const ExpressCheckoutModal: React.FC = () => {
                               SCAN WITH ANY UPI APP (BHIM, GPAY, PHONEPE, PAYTM)
                             </span>
                             <div className="flex items-center justify-center sm:justify-start gap-2">
-                              <span className="font-mono text-xs font-bold bg-[#FAF7F2] px-2.5 py-1 border border-[#181513]/15 rounded">
+                              <span className="font-mono text-xs font-bold bg-[#FAF7F2] px-2.5 py-1 border border-[#181513]/15 rounded-none">
                                 {upiId}
                               </span>
                               <button
                                 type="button"
                                 onClick={handleCopyUpi}
-                                className="px-2 py-1 bg-[#181513] text-white text-[10px] font-mono rounded hover:bg-[#E67E44] flex items-center gap-1"
+                                className="px-2.5 py-1.5 bg-[#181513] text-white text-[10px] font-mono rounded-none hover:bg-[#A65B32] flex items-center gap-1 btn-press"
                               >
-                                {copiedUpi ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                                {copiedUpi ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                                 <span>{copiedUpi ? 'Copied' : 'Copy'}</span>
                               </button>
                             </div>
                             <span className="font-serif text-lg font-bold text-[#181513] block">
                               Amount: {formatPrice(finalTotal)}
                             </span>
+                          </div>
+                        </div>
+
+                        {/* 1-Tap Mobile UPI Intent App Switcher (Smartphone High-Conversion) */}
+                        <div className="pt-2">
+                          <span className="text-[10px] font-mono text-[#5C564E] uppercase tracking-wider block mb-2 text-center sm:text-left">
+                            ⚡ Mobile 1-Tap Instant App Switcher
+                          </span>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                            <a
+                              href={upiPaymentUri}
+                              className="py-2.5 px-3 bg-[#181513] hover:bg-[#A65B32] text-white text-[10px] font-mono tracking-wider uppercase rounded-sm flex items-center justify-center gap-1.5 transition-colors btn-press shadow"
+                            >
+                              <Sparkles className="w-3 h-3 text-[#C4975A]" />
+                              <span>Pay with GPay</span>
+                            </a>
+                            <a
+                              href={upiPaymentUri}
+                              className="py-2.5 px-3 bg-[#5f259f] hover:bg-[#4d1d82] text-white text-[10px] font-mono tracking-wider uppercase rounded-sm flex items-center justify-center gap-1.5 transition-colors btn-press shadow"
+                            >
+                              <span>PhonePe</span>
+                            </a>
+                            <a
+                              href={upiPaymentUri}
+                              className="py-2.5 px-3 bg-[#002e6e] hover:bg-[#002252] text-white text-[10px] font-mono tracking-wider uppercase rounded-sm flex items-center justify-center gap-1.5 transition-colors btn-press shadow col-span-2 sm:col-span-1"
+                            >
+                              <span>Paytm / BHIM</span>
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -587,7 +615,7 @@ export const ExpressCheckoutModal: React.FC = () => {
           {step === 'confirmed' && confirmedOrder && (
             <div className="text-center space-y-6 py-2">
               {/* Crimson Vintage Vogue Wax Seal */}
-              <div className="relative inline-block mx-auto animate-scaleUp">
+              <div className="relative inline-block mx-auto animate-sealStamp">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#991B1B] via-[#7F1D1D] to-[#450A0A] text-amber-200 border-4 border-amber-300/40 shadow-2xl flex flex-col items-center justify-center font-serif text-center select-none ring-4 ring-red-900/30">
                   <span className="text-[10px] tracking-widest font-mono text-amber-300 font-bold">V.V.</span>
                   <span className="text-sm font-bold tracking-tight text-amber-100 font-serif">1992</span>
@@ -596,7 +624,7 @@ export const ExpressCheckoutModal: React.FC = () => {
               </div>
 
               <div className="space-y-1">
-                <span className="text-xs font-mono uppercase tracking-widest text-[#E67E44] font-bold">
+                <span className="text-xs font-mono uppercase tracking-widest text-[#A65B32] font-bold">
                   TRANSACTION CONFIRMED • 1-OF-1 PERMANENTLY ALLOCATED
                 </span>
                 <h3 className="font-serif text-3xl font-bold text-[#181513]">

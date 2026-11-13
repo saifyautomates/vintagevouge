@@ -109,13 +109,13 @@ export const SocialProofToast: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-24 sm:bottom-6 left-3 sm:left-6 z-40 max-w-[calc(100vw-24px)] sm:max-w-sm w-full sm:w-auto animate-slideUp">
+    <div className="fixed top-20 sm:top-auto sm:bottom-6 left-3 sm:left-6 right-3 sm:right-auto z-40 max-w-[calc(100vw-24px)] sm:max-w-sm w-full sm:w-auto animate-slideDown sm:animate-slideUp">
       <div 
         onClick={handleClick}
-        className="bg-[#FAF7F2]/95 backdrop-blur-md border border-[#181513]/20 shadow-2xl p-3 sm:p-3.5 rounded-xl flex items-center gap-3.5 text-[#181513] cursor-pointer hover:border-[#E67E44] transition-all group relative pr-8"
+        className="bg-[#FAF7F2]/95 backdrop-blur-md border border-[#181513]/20 shadow-2xl p-3 sm:p-3.5 rounded-sm flex items-center gap-3.5 text-[#181513] cursor-pointer hover:border-[#A65B32] transition-all group relative pr-9"
       >
         {/* Specimen Thumbnail */}
-        <div className="relative w-12 h-14 bg-[#EAE3D4] rounded overflow-hidden flex-shrink-0 border border-[#181513]/10">
+        <div className="relative w-12 h-14 bg-[#EAE3D4] rounded-none overflow-hidden flex-shrink-0 border border-[#181513]/10">
           <img
             src={current.image}
             alt={current.productTitle}
@@ -129,10 +129,10 @@ export const SocialProofToast: React.FC = () => {
         {/* Info */}
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 text-[9px] font-mono text-[#5C564E]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E67E44] animate-ping" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A65B32] animate-ping" />
             <span className="font-bold text-[#181513]">{current.customerName}</span>
             <span>in</span>
-            <span className="text-[#E67E44] font-medium flex items-center gap-0.5">
+            <span className="text-[#A65B32] font-medium flex items-center gap-0.5">
               <MapPin className="w-2.5 h-2.5 inline" /> {current.city}
             </span>
           </div>
@@ -142,7 +142,7 @@ export const SocialProofToast: React.FC = () => {
             [{current.referenceCode}] {current.productTitle}
           </p>
 
-          <div className="flex items-center gap-2 text-[9px] font-mono text-[#8C857B] mt-0.5">
+          <div className="flex items-center gap-2 text-[9px] font-mono text-[#6B6358] mt-0.5">
             <span className="text-emerald-700 font-bold flex items-center gap-0.5">
               <ShieldCheck className="w-2.5 h-2.5" /> Verified Dispatch
             </span>
@@ -157,11 +157,11 @@ export const SocialProofToast: React.FC = () => {
             e.stopPropagation();
             setIsDismissed(true);
           }}
-          className="absolute top-2 right-2 p-1 text-[#8C857B] hover:text-[#181513] transition-colors"
+          className="absolute top-2 right-2 min-w-[36px] min-h-[36px] flex items-center justify-center text-[#6B6358] hover:text-[#181513] transition-colors"
           title="Dismiss alerts"
           aria-label="Dismiss alerts"
         >
-          <X className="w-3.5 h-3.5" />
+          <X className="w-4 h-4" />
         </button>
       </div>
     </div>

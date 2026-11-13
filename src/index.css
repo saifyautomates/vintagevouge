@@ -7,9 +7,11 @@
     --bg-parchment: #F7F4EE;
     --ink-primary: #181513;
     --ink-muted: #5C564E;
+    --ink-tertiary: #6B6358;
     --ink-border: rgba(24, 21, 19, 0.12);
-    --accent: #E67E44;
-    --accent-hover: #d57038;
+    --accent: #A65B32;
+    --accent-hover: #8E4B27;
+    --accent-gold: #C4975A;
     --success: #2D5A3F;
     --urgency: #991B1B;
     --surface: #FAF7F2;
@@ -52,6 +54,14 @@
 
   .font-mono {
     font-family: 'Space Mono', 'JetBrains Mono', monospace;
+  }
+
+  /* Archival Provenance Stamp Utility */
+  .font-stamp {
+    font-family: 'Space Mono', 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
   }
 
   /* Smooth focus outlines for accessibility */

@@ -50,10 +50,10 @@ export const MeasurementBlueprint: React.FC<MeasurementBlueprintProps> = ({ prod
   const current = metrics.find((m) => m.id === activeMetric) || metrics[0];
 
   return (
-    <div className="bg-[#FAF7F2] border border-[#181513]/15 rounded-xl p-4 sm:p-5 space-y-4 text-[#181513]">
+    <div data-cursor="MEASURE" className="bg-[#FAF7F2] border border-[#181513]/15 rounded-sm p-4 sm:p-5 space-y-4 text-[#181513]">
       <div className="flex items-center justify-between border-b border-[#181513]/10 pb-3">
         <div className="flex items-center gap-2">
-          <span className="p-1.5 bg-[#E67E44]/15 rounded text-[#E67E44]">
+          <span className="p-1.5 bg-[#A65B32]/15 rounded-sm text-[#A65B32]">
             <Ruler className="w-4 h-4" />
           </span>
           <div>
@@ -65,7 +65,7 @@ export const MeasurementBlueprint: React.FC<MeasurementBlueprintProps> = ({ prod
             </span>
           </div>
         </div>
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#181513] text-[#FAF7F2] font-bold">
+        <span className="text-[10px] font-mono px-2 py-0.5 rounded-none bg-[#181513] text-[#FAF7F2] font-bold">
           {product.size}
         </span>
       </div>
@@ -82,7 +82,7 @@ export const MeasurementBlueprint: React.FC<MeasurementBlueprintProps> = ({ prod
                 setActiveMetric(m.id);
               }}
               onMouseEnter={() => playHoverSound()}
-              className={`p-2.5 rounded-lg border text-left transition-all ${
+              className={`p-2.5 rounded-sm border text-left transition-all btn-press ${
                 isSelected
                   ? 'bg-[#181513] text-white border-[#181513] shadow-md scale-[1.02]'
                   : 'bg-white/80 hover:bg-white text-[#181513] border-[#181513]/15'
@@ -91,7 +91,7 @@ export const MeasurementBlueprint: React.FC<MeasurementBlueprintProps> = ({ prod
               <span className="block text-[9px] uppercase tracking-wider text-white/60 mb-0.5">
                 {m.label.split(' ')[0]}
               </span>
-              <span className="block font-bold text-xs sm:text-sm text-[#E67E44]">{m.value}</span>
+              <span className="block font-bold text-xs sm:text-sm text-[#C4975A]">{m.value}</span>
             </button>
           );
         })}
