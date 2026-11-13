@@ -1,4 +1,4 @@
-import { ProductRecord, OrderRecord, DropConfigRecord } from './schema';
+import { ProductRecord, OrderRecord, DropConfigRecord, CouponRecord } from './schema';
 
 export const SEED_PRODUCTS: ProductRecord[] = [
   {
@@ -404,3 +404,36 @@ export const SEED_DROP_CONFIG: DropConfigRecord = {
     'VINTAGE VOGUE INDIA 🇮🇳 DROP #24 LIVE DOSSIER: 1-of-1 curated Japanese archives, heavy denim, and leather bombers dispatching from our Kota studio via Blue Dart Air.',
   updatedAt: '2026-11-13T10:00:00Z',
 };
+
+export const SEED_COUPONS: CouponRecord[] = [
+  {
+    id: 'coupon-vogue10',
+    code: 'VOGUE10',
+    discountType: 'percentage',
+    discountValue: 10,
+    minOrderValue: 0,
+    active: true,
+    notes: 'Insider VIP 10% Welcome Discount',
+    createdAt: '2026-11-01T10:00:00Z',
+  },
+  {
+    id: 'coupon-kota24',
+    code: 'KOTA24',
+    discountType: 'flat',
+    discountValue: 500,
+    minOrderValue: 1500,
+    active: true,
+    notes: 'Kota Atelier Patron Flat ₹500 Privilege',
+    createdAt: '2026-11-01T10:00:00Z',
+  },
+  {
+    id: 'coupon-drop24vip',
+    code: 'DROP24VIP',
+    discountType: 'flat',
+    discountValue: 300,
+    minOrderValue: 2000,
+    active: true,
+    notes: 'Drop #24 Sunday Early Bird ₹300 Privilege',
+    createdAt: '2026-11-10T10:00:00Z',
+  },
+];

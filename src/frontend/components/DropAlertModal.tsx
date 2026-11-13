@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Bell, Check, Sparkles, MessageCircle } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
@@ -7,6 +7,18 @@ export const DropAlertModal: React.FC = () => {
   const [contact, setContact] = useState('');
   const [size, setSize] = useState('Boxy M');
   const [submitted, setSubmitted] = useState(false);
+
+  // Escape key handler
+  useEffect(() => {
+    if (!isDropModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsDropModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isDropModalOpen, setIsDropModalOpen]);
 
   if (!isDropModalOpen) return null;
 
@@ -24,7 +36,10 @@ export const DropAlertModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
+    <div 
+      onClick={() => setIsDropModalOpen(false)} 
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/65 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn"
+    >
       <div 
         className="relative bg-[#FAF7F2] border border-[#181513]/25 max-w-md w-full p-6 sm:p-8 shadow-2xl space-y-6"
         onClick={(e) => e.stopPropagation()}

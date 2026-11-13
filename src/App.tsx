@@ -12,13 +12,19 @@ import { CommandPalette } from './frontend/components/CommandPalette';
 import { ProductDetailModal } from './frontend/components/ProductDetailModal';
 import { CartDrawer } from './frontend/components/CartDrawer';
 import { DropAlertModal } from './frontend/components/DropAlertModal';
+import { ExpressCheckoutModal } from './frontend/components/ExpressCheckoutModal';
+import { FitAdvisorModal } from './frontend/components/FitAdvisorModal';
+import { ExitIntentModal } from './frontend/components/ExitIntentModal';
+import { WebPushPrompt } from './frontend/components/WebPushPrompt';
+import { StudioAudioWidget } from './frontend/components/StudioAudioWidget';
+import { SocialProofToast } from './frontend/components/SocialProofToast';
 import { Category } from './database/schema';
 import { Check } from 'lucide-react';
 import { playClickSound } from './frontend/utils/audio';
 
 const AppShell: React.FC = () => {
   const { viewMode } = useStore();
-  const { toastMessage } = useCart();
+  const { toastMessage, isFitAdvisorOpen, setIsFitAdvisorOpen } = useCart();
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<Category>('all');
 
@@ -70,7 +76,19 @@ const AppShell: React.FC = () => {
       {/* Interactive Modals & Drawers */}
       <ProductDetailModal />
       <CartDrawer />
+      <ExpressCheckoutModal />
       <DropAlertModal />
+      <ExitIntentModal />
+      <FitAdvisorModal isOpen={isFitAdvisorOpen} onClose={() => setIsFitAdvisorOpen(false)} />
+
+      {/* Floating Retro Studio Cassette / Turntable Widget */}
+      <StudioAudioWidget />
+
+      {/* Live Social Proof Real-Time Collector Activity (Storefront) */}
+      {viewMode === 'storefront' && <SocialProofToast />}
+
+      {/* 1-Tap Browser Web Push Notification Permission Prompt */}
+      {viewMode === 'storefront' && <WebPushPrompt />}
 
       {/* Global Toast Notification */}
       {toastMessage && (

@@ -89,15 +89,8 @@ export const MobileAppView: React.FC = () => {
     setIsCartOpen,
     setIsDropModalOpen,
     setSelectedProduct,
-    currency,
-    setCurrency
+    openCheckout,
   } = useCart();
-
-  const handleToggleCurrency = () => {
-    if (currency === 'INR') setCurrency('USD');
-    else if (currency === 'USD') setCurrency('EUR');
-    else setCurrency('INR');
-  };
 
   const [activeTab, setActiveTab] = useState<'shop' | 'drops' | 'saved' | 'pos'>('shop');
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
@@ -710,31 +703,47 @@ export const MobileAppView: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between pt-2">
-                <div>
-                  <span className="text-[10px] font-mono text-[#8C827A] block">TOTAL ACQUISITION</span>
-                  <span className="font-mono font-bold text-lg">{formatPrice(quickSpecimen.price)}</span>
+              <div className="pt-2">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-mono text-[#8C827A]">TOTAL ACQUISITION</span>
+                  <span className="font-mono font-bold text-lg text-[#181513]">{formatPrice(quickSpecimen.price)}</span>
                 </div>
 
-                <button
-                  disabled={!quickSpecimen.inStock}
-                  onClick={() => {
-                    if (quickSpecimen.inStock) {
-                      playSuccessChime();
-                      addToCart(quickSpecimen);
-                      setQuickSpecimen(null);
-                      setIsCartOpen(true);
-                    }
-                  }}
-                  className={`px-5 py-2.5 rounded-xl font-mono text-xs font-bold shadow-md flex items-center gap-2 ${
-                    quickSpecimen.inStock
-                      ? 'bg-[#E67E44] text-white hover:bg-[#d57038]'
-                      : 'bg-black/10 text-black/30 cursor-not-allowed'
-                  }`}
-                >
-                  <ShoppingBag className="w-4 h-4" />
-                  <span>{quickSpecimen.inStock ? 'Acquire 1-of-1' : 'Claimed Out'}</span>
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    disabled={!quickSpecimen.inStock}
+                    onClick={() => {
+                      if (quickSpecimen.inStock) {
+                        playSuccessChime();
+                        addToCart(quickSpecimen);
+                        setQuickSpecimen(null);
+                        setIsCartOpen(true);
+                      }
+                    }}
+                    className={`flex-1 py-3 rounded-xl font-mono text-xs font-bold flex items-center justify-center gap-1.5 border transition-all ${
+                      quickSpecimen.inStock
+                        ? 'border-[#181513]/20 bg-white hover:bg-[#FAF7F2] text-[#181513]'
+                        : 'border-black/10 bg-black/5 text-black/30 cursor-not-allowed'
+                    }`}
+                  >
+                    <ShoppingBag className="w-3.5 h-3.5" />
+                    <span>{quickSpecimen.inStock ? 'Add to Bag' : 'Claimed Out'}</span>
+                  </button>
+
+                  {quickSpecimen.inStock && (
+                    <button
+                      onClick={() => {
+                        playClickSound();
+                        setQuickSpecimen(null);
+                        openCheckout(quickSpecimen);
+                      }}
+                      className="flex-1 py-3 rounded-xl font-mono text-xs font-bold bg-[#E67E44] hover:bg-[#d57038] text-white shadow-md flex items-center justify-center gap-1.5 transition-all"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>1-Click UPI</span>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

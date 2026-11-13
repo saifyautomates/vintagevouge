@@ -19,7 +19,7 @@ export const ModeSwitcher: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 inset-x-0 z-50 pointer-events-none flex justify-center px-4">
+    <div className="fixed bottom-16 sm:bottom-6 inset-x-0 z-50 pointer-events-none flex justify-center px-2 sm:px-4">
       <div className="pointer-events-auto bg-[#181513]/90 backdrop-blur-xl border border-white/20 p-1.5 rounded-full shadow-[0_15px_35px_rgba(0,0,0,0.5)] flex items-center gap-1 sm:gap-2">
         {/* Modes Pill Button Group */}
         {modes.map((m) => {

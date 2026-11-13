@@ -8,6 +8,7 @@ export interface CheckoutRequest {
   customerContact?: string;
   productIds: string[];
   discountPercent?: number;
+  discountAmount?: number;
   paymentMethod: PaymentMethod;
   cashTendered?: number;
 }
@@ -28,9 +29,11 @@ export class CheckoutService {
     });
 
     const subtotal = products.reduce((sum, p) => sum + p.price, 0);
-    const discountRate = (req.discountPercent || 0) / 100;
-    const discountAmount = Math.round(subtotal * discountRate);
-    const totalAmount = subtotal - discountAmount;
+    const discountAmount =
+      req.discountAmount !== undefined
+        ? Math.min(req.discountAmount, subtotal)
+        : Math.round(subtotal * ((req.discountPercent || 0) / 100));
+    const totalAmount = Math.max(0, subtotal - discountAmount);
 
     // Change calculation if Cash
     let changeDue: number | undefined;
@@ -45,10 +48,8 @@ export class CheckoutService {
     // upi://pay?pa=vintagevogue@upi&pn=Vintage%20Vogue%20India&am=3499&cu=INR&tn=Drop24
     const upiPaymentString = `upi://pay?pa=vintagevogue@upi&pn=Vintage%20Vogue%20India&am=${totalAmount}&cu=INR&tn=VV-Order`;
 
-    // Atomic stock deduction for each 1-of-1 piece
-    products.forEach((p) => {
-      productRepository.atomicDeduct1of1(p.id);
-    });
+    // Atomic stock deduction for all 1-of-1 pieces in a single transaction
+    productRepository.atomicDeductMultiple(products.map((p) => p.id));
 
     const trackingNumber =
       req.channel === 'Online Store'

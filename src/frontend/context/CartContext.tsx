@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Product, CartItem } from '../types';
+import { CouponRecord } from '../../database/schema';
 
 interface CartContextType {
   cart: CartItem[];
@@ -9,6 +10,9 @@ interface CartContextType {
   clearCart: () => void;
   totalItems: number;
   subtotal: number;
+  appliedCoupon: CouponRecord | null;
+  setAppliedCoupon: (c: CouponRecord | null) => void;
+  discountAmount: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
   currency: 'INR' | 'USD' | 'EUR';
@@ -18,11 +22,22 @@ interface CartContextType {
   setSelectedProduct: (p: Product | null) => void;
   wishlist: string[];
   toggleWishlist: (productId: string) => void;
+  recentlyViewed: Product[];
+  recordView: (product: Product) => void;
+  isExitIntentOpen: boolean;
+  setIsExitIntentOpen: (open: boolean) => void;
   toastMessage: string | null;
   showToast: (msg: string) => void;
   freeShippingThreshold: number;
   isDropModalOpen: boolean;
   setIsDropModalOpen: (open: boolean) => void;
+  isFitAdvisorOpen: boolean;
+  setIsFitAdvisorOpen: (open: boolean) => void;
+  isCheckoutModalOpen: boolean;
+  setIsCheckoutModalOpen: (open: boolean) => void;
+  checkoutProduct: Product | null;
+  openCheckout: (singleProduct?: Product) => void;
+  closeCheckout: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -46,8 +61,30 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   });
 
+  const [recentlyViewed, setRecentlyViewed] = useState<Product[]>(() => {
+    try {
+      const saved = localStorage.getItem('vintage_vogue_recently_viewed');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const [appliedCoupon, setAppliedCoupon] = useState<CouponRecord | null>(() => {
+    try {
+      const saved = localStorage.getItem('vintage_vogue_applied_coupon');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isDropModalOpen, setIsDropModalOpen] = useState(false);
+  const [isFitAdvisorOpen, setIsFitAdvisorOpen] = useState(false);
+  const [isCheckoutModalOpen, setIsCheckoutModalOpen] = useState(false);
+  const [isExitIntentOpen, setIsExitIntentOpen] = useState(false);
+  const [checkoutProduct, setCheckoutProduct] = useState<Product | null>(null);
   const [currency, setCurrency] = useState<'INR' | 'USD' | 'EUR'>('INR');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -66,6 +103,36 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch {}
   }, [wishlist]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem('vintage_vogue_recently_viewed', JSON.stringify(recentlyViewed));
+    } catch {}
+  }, [recentlyViewed]);
+
+  useEffect(() => {
+    try {
+      if (appliedCoupon) {
+        localStorage.setItem('vintage_vogue_applied_coupon', JSON.stringify(appliedCoupon));
+      } else {
+        localStorage.removeItem('vintage_vogue_applied_coupon');
+      }
+    } catch {}
+  }, [appliedCoupon]);
+
+  const recordView = (product: Product) => {
+    setRecentlyViewed(prev => {
+      const filtered = prev.filter(p => p.id !== product.id);
+      return [product, ...filtered].slice(0, 10);
+    });
+  };
+
+  const handleSelectProduct = (p: Product | null) => {
+    setSelectedProduct(p);
+    if (p) {
+      recordView(p);
+    }
+  };
+
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => {
@@ -77,15 +144,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCart(prev => {
       const existing = prev.find(item => item.product.id === product.id);
       if (existing) {
-        return prev.map(item =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
+        showToast(`1-of-1 piece already in bag: [${product.referenceCode}]`);
+        return prev;
       }
-      return [...prev, { product, quantity }];
+      showToast(`Claimed 1-of-1: ${product.title}`);
+      return [...prev, { product, quantity: 1 }];
     });
-    showToast(`Claimed 1-of-1: ${product.title}`);
   };
 
   const removeFromCart = (productId: string) => {
@@ -97,9 +161,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       removeFromCart(productId);
       return;
     }
+    // Strict 1-of-1 archival constraint: quantity cannot exceed 1
+    if (quantity > 1) {
+      showToast('Archival specimens are 1-of-1 strictly (max 1 per client)');
+      return;
+    }
     setCart(prev =>
       prev.map(item =>
-        item.product.id === productId ? { ...item, quantity } : item
+        item.product.id === productId ? { ...item, quantity: 1 } : item
       )
     );
   };
@@ -117,10 +186,31 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
+  const openCheckout = (singleProduct?: Product) => {
+    if (singleProduct) {
+      setCheckoutProduct(singleProduct);
+    } else {
+      setCheckoutProduct(null);
+    }
+    setIsCartOpen(false);
+    setIsCheckoutModalOpen(true);
+  };
+
+  const closeCheckout = () => {
+    setIsCheckoutModalOpen(false);
+    setCheckoutProduct(null);
+  };
+
   const clearCart = () => setCart([]);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+
+  const discountAmount = appliedCoupon
+    ? appliedCoupon.discountType === 'percentage'
+      ? Math.round(subtotal * (appliedCoupon.discountValue / 100))
+      : Math.min(appliedCoupon.discountValue, subtotal)
+    : 0;
 
   const formatPrice = (amountInINR: number): string => {
     // 100% Strictly Indian Rupee (₹ INR) with standard Indian numbering format
@@ -137,20 +227,34 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         clearCart,
         totalItems,
         subtotal,
+        appliedCoupon,
+        setAppliedCoupon,
+        discountAmount,
         isCartOpen,
         setIsCartOpen,
         currency,
         setCurrency,
         formatPrice,
         selectedProduct,
-        setSelectedProduct,
+        setSelectedProduct: handleSelectProduct,
         wishlist,
         toggleWishlist,
+        recentlyViewed,
+        recordView,
+        isExitIntentOpen,
+        setIsExitIntentOpen,
         toastMessage,
         showToast,
         freeShippingThreshold,
         isDropModalOpen,
         setIsDropModalOpen,
+        isFitAdvisorOpen,
+        setIsFitAdvisorOpen,
+        isCheckoutModalOpen,
+        setIsCheckoutModalOpen,
+        checkoutProduct,
+        openCheckout,
+        closeCheckout,
       }}
     >
       {children}

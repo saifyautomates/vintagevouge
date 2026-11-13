@@ -31,7 +31,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onSelectCategory,
 }) => {
   const { products, setViewMode, isVinylAudioOn, toggleVinylAudio } = useStore();
-  const { setSelectedProduct, addToCart, formatPrice, setCurrency, currency } = useCart();
+  const { setSelectedProduct, addToCart, formatPrice, setCurrency, currency, setIsFitAdvisorOpen } = useCart();
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -122,6 +122,16 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       category: 'Sensory',
       action: () => {
         toggleVinylAudio();
+        onClose();
+      },
+    },
+    {
+      id: 'fit-advisor',
+      label: 'Open Archival Silhouette & Fit Advisor (Body Calibration)',
+      icon: Sparkles,
+      category: 'Sizing',
+      action: () => {
+        setIsFitAdvisorOpen(true);
         onClose();
       },
     },

@@ -13,7 +13,7 @@ const getAudioContext = (): AudioContext | null => {
     }
   }
   if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
+    audioCtx.resume().catch(() => {});
   }
   return audioCtx;
 };
@@ -244,5 +244,63 @@ export const stopVinylCrackle = () => {
     } catch {}
     vinylNode = null;
   }
+};
+
+// Satisfying wax seal stamp impact
+export const playWaxSealStampSound = () => {
+  if (!isSoundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+  // Deep bass thud
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'triangle';
+  osc.frequency.setValueAtTime(140, now);
+  osc.frequency.exponentialRampToValueAtTime(32, now + 0.12);
+  gain.gain.setValueAtTime(0.35, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.start(now);
+  osc.stop(now + 0.15);
+
+  // Soft wax compression crunch
+  const noiseBuffer = ctx.createBuffer(1, ctx.sampleRate * 0.05, ctx.sampleRate);
+  const data = noiseBuffer.getChannelData(0);
+  for (let i = 0; i < data.length; i++) {
+    data[i] = (Math.random() * 2 - 1) * 0.15;
+  }
+  const noise = ctx.createBufferSource();
+  noise.buffer = noiseBuffer;
+  const filter = ctx.createBiquadFilter();
+  filter.type = 'lowpass';
+  filter.frequency.value = 800;
+  noise.connect(filter);
+  filter.connect(ctx.destination);
+  noise.start(now + 0.02);
+};
+
+// Shimmering discovery sparkle sound
+export const playSparkleSound = () => {
+  if (!isSoundEnabled) return;
+  const ctx = getAudioContext();
+  if (!ctx) return;
+
+  const now = ctx.currentTime;
+  const freqs = [880, 1108.73, 1318.51, 1760, 2093];
+  freqs.forEach((f, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(f, now + i * 0.04);
+    gain.gain.setValueAtTime(0.08, now + i * 0.04);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.04 + 0.15);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now + i * 0.04);
+    osc.stop(now + i * 0.04 + 0.16);
+  });
 };
 

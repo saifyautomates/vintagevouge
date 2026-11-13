@@ -18,10 +18,10 @@ export const LookbookSplit: React.FC = () => {
   const { setSelectedProduct, addToCart, formatPrice, cart } = useCart();
   const [activePinId, setActivePinId] = useState<string | null>(null);
 
-  const jacketPiece = products[1] || products[0];
-  const corduroyPiece = products[6] || products[0];
-  const dressPiece = products[4] || products[0];
-  const bomberPiece = products[2] || products[0];
+  const jacketPiece = products.find((p) => p.referenceCode === 'VV-D24-02') || products[1] || products[0];
+  const corduroyPiece = products.find((p) => p.referenceCode === 'VV-D24-07') || products[6] || products[0];
+  const dressPiece = products.find((p) => p.referenceCode === 'VV-D24-05') || products[4] || products[0];
+  const bomberPiece = products.find((p) => p.referenceCode === 'VV-D24-03') || products[2] || products[0];
 
   const leftPins: HotspotPin[] = [
     {

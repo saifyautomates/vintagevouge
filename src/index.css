@@ -8,6 +8,26 @@
     --ink-primary: #181513;
     --ink-muted: #5C564E;
     --ink-border: rgba(24, 21, 19, 0.12);
+    --accent: #E67E44;
+    --accent-hover: #d57038;
+    --success: #2D5A3F;
+    --urgency: #991B1B;
+    --surface: #FAF7F2;
+    --surface-muted: #EFE7DB;
+
+    /* Smooth scroll for the entire page */
+    scroll-behavior: smooth;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    :root { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   body {
@@ -16,6 +36,10 @@
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    /* GPU-accelerated compositing hint */
+    -webkit-transform: translateZ(0);
   }
 
   h1, h2, h3, .font-serif {
@@ -29,15 +53,190 @@
   .font-mono {
     font-family: 'Space Mono', 'JetBrains Mono', monospace;
   }
+
+  /* Smooth focus outlines for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Touch device optimization */
+  @media (hover: none) {
+    .group:hover .group-hover\:opacity-100 { opacity: 1; }
+  }
 }
 
-/* Delicate Archival Grain & Texture */
+/* ==========================================================================
+   PERFORMANCE-OPTIMIZED ANIMATIONS (GPU-Accelerated)
+   All animations use transform/opacity only for 60fps+ compositing
+   ========================================================================== */
+
+/* Fade In (Page loads, modal backgrounds) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scale Up (Modal content entrances) */
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-scaleUp {
+  animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Slide Left (Cart drawer entrance) */
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.animate-slideLeft {
+  animation: slideLeft 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+}
+
+/* Slide Up (Toast notifications) */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slideUp {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Slide Down (Mobile menu, search bar) */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slideDown {
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Gentle Float (Hero badges, trust signals) */
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.animate-float {
+  animation: gentleFloat 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Urgency Pulse (Live dot, stock warnings) */
+@keyframes urgencyPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+.animate-urgency-pulse {
+  animation: urgencyPulse 1.5s ease-in-out infinite;
+}
+
+/* Shimmer Loading Skeleton */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, #EFE7DB 25%, #F4EFE6 50%, #EFE7DB 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Stamp Seal (Wax seal on checkout confirmation) */
+@keyframes sealStamp {
+  0% { opacity: 0; transform: scale(2) rotate(-15deg); }
+  60% { opacity: 1; transform: scale(0.9) rotate(2deg); }
+  80% { transform: scale(1.05) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.animate-sealStamp {
+  animation: sealStamp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Progress Bar Fill */
+@keyframes progressFill {
+  from { width: 0; }
+}
+.animate-progressFill {
+  animation: progressFill 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   MICRO-INTERACTION UTILITIES
+   ========================================================================== */
+
+/* Smooth button press feedback */
+.btn-press:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+/* Magnetic hover lift for cards */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(24, 21, 19, 0.08), 0 4px 12px rgba(24, 21, 19, 0.04);
+}
+
+/* Smooth underline reveal on hover */
+.underline-reveal {
+  position: relative;
+}
+.underline-reveal::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.underline-reveal:hover::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   DELICATE TEXTURES & ARCHIVAL AESTHETIC
+   ========================================================================== */
+
+/* Paper grain micro-texture */
 .paper-grain {
   background-image: radial-gradient(rgba(24, 21, 19, 0.035) 1px, transparent 0);
   background-size: 20px 20px;
 }
 
-/* Custom Scrollbar for Vintage Paper Aesthetic */
+/* Analog film grain overlay (composited on GPU) */
+.film-grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  will-change: auto;
+}
+
+/* ==========================================================================
+   SCROLLBAR (Vintage Paper Aesthetic)
+   ========================================================================== */
+
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -49,27 +248,51 @@
 
 ::-webkit-scrollbar-thumb {
   background: #C4B8A5;
-  border-radius: 2px;
+  border-radius: 3px;
+  transition: background 0.2s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E67E44;
+  background: var(--accent);
 }
 
-/* Image zoom transition */
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #C4B8A5 #F3ECE2;
+}
+
+/* ==========================================================================
+   IMAGE & MEDIA OPTIMIZATIONS
+   ========================================================================== */
+
 .image-zoom-container {
   overflow: hidden;
 }
 
 .image-zoom-container img {
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+  will-change: transform;
 }
 
 .image-zoom-container:hover img {
   transform: scale(1.05);
 }
 
-/* Continuous Marquee Ticker */
+/* Lazy-loaded image fade-in */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   MARQUEE TICKER (Smooth infinite scroll)
+   ========================================================================== */
+
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
@@ -78,18 +301,73 @@
 .animate-marquee {
   display: inline-flex;
   animation: marquee 28s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Pulse Glow */
+/* ==========================================================================
+   CONVERSION-OPTIMIZED URGENCY & TRUST SIGNALS
+   ========================================================================== */
+
+/* Pulse Glow for limited stock badges */
 @keyframes pulseGlow {
   0%, 100% { opacity: 0.8; transform: scale(1); }
   50% { opacity: 1; transform: scale(1.04); }
 }
-
 .pulse-glow {
   animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Live dot pulse (header, drop countdown) */
+@keyframes liveDot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(230, 126, 68, 0.7); }
+  70% { opacity: 1; box-shadow: 0 0 0 6px rgba(230, 126, 68, 0); }
+}
+.animate-live-dot {
+  animation: liveDot 2s ease-in-out infinite;
+}
+
+/* Trust badge subtle glow */
+.trust-badge {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.trust-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(45, 90, 63, 0.15);
+}
+
+/* ==========================================================================
+   MODAL & DRAWER BACKDROP
+   ========================================================================== */
+
+.modal-backdrop {
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+}
+
+/* ==========================================================================
+   SELECTION & HIGHLIGHT STYLING
+   ========================================================================== */
+
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* ==========================================================================
+   PRINT STYLES (for thermal receipts and order confirmations)
+   ========================================================================== */
+
+@media print {
+  body { background: white !important; color: black !important; }
+  .no-print, header, footer, nav, .animate-marquee { display: none !important; }
+  * { box-shadow: none !important; text-shadow: none !important; }
 }

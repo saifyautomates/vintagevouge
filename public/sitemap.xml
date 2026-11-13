@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://vintagevogue.in/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://vintagevogue.in/assets/images/boxy-embroidered-shirt.jpg</image:loc>
+      <image:title>1992 Boxy Cut Chain-Stitched Western Camp Shirt — Vintage Vogue India</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://vintagevogue.in/assets/images/vintage-denim-trucker.jpg</image:loc>
+      <image:title>14oz Selvedge Denim Trucker Overshirt — Vintage Vogue India</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://vintagevogue.in/assets/images/vintage-leather-bomber.jpg</image:loc>
+      <image:title>1988 Lambskin Aviator Bomber Jacket — Vintage Vogue India</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://vintagevogue.in/#archive-catalog</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://vintagevogue.in/#boxy-shirts</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vintagevogue.in/#denim-workwear</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vintagevogue.in/#leather-jackets</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vintagevogue.in/#dresses-corsets</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://vintagevogue.in/#vintage-tees</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+

@@ -1,0 +1,46 @@
+{
+  "name": "Vintage Vogue India — Curated 1-of-1 Archival Western Wear",
+  "short_name": "Vintage Vogue",
+  "description": "Authenticated Japanese vintage boxy shirts, selvedge denim trucker jackets & leather bombers. Flat-laid tape measured in Kota, Rajasthan. Free Pan-India express delivery.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#181513",
+  "theme_color": "#181513",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["shopping", "lifestyle", "fashion"],
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/vite.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Drop #24 Catalog",
+      "url": "/#archive-catalog",
+      "description": "View available 1-of-1 archival specimens"
+    },
+    {
+      "name": "Fit Advisor",
+      "url": "/?view=fit-advisor",
+      "description": "Interactive silhouette and flat-laid measurement advisor"
+    },
+    {
+      "name": "In-Store POS Register",
+      "url": "/?view=pos",
+      "description": "120fps Kota counter billing terminal"
+    }
+  ]
+}
+

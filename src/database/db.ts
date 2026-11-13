@@ -1,5 +1,5 @@
-import { DatabaseState, ProductRecord, OrderRecord, DropConfigRecord } from './schema';
-import { SEED_PRODUCTS, SEED_ORDERS, SEED_DROP_CONFIG } from './seed';
+import { DatabaseState, ProductRecord, OrderRecord, DropConfigRecord, CouponRecord } from './schema';
+import { SEED_PRODUCTS, SEED_ORDERS, SEED_DROP_CONFIG, SEED_COUPONS } from './seed';
 
 type DatabaseListener = (state: DatabaseState) => void;
 
@@ -18,6 +18,7 @@ class TransactionalDatabase {
         products: SEED_PRODUCTS,
         orders: SEED_ORDERS,
         dropConfig: SEED_DROP_CONFIG,
+        coupons: SEED_COUPONS,
       };
     }
     try {
@@ -25,7 +26,10 @@ class TransactionalDatabase {
       if (stored) {
         const parsed = JSON.parse(stored);
         if (parsed.products && Array.isArray(parsed.products)) {
-          return parsed;
+          return {
+            ...parsed,
+            coupons: parsed.coupons && Array.isArray(parsed.coupons) ? parsed.coupons : SEED_COUPONS,
+          };
         }
       }
     } catch (e) {
@@ -35,6 +39,7 @@ class TransactionalDatabase {
       products: SEED_PRODUCTS,
       orders: SEED_ORDERS,
       dropConfig: SEED_DROP_CONFIG,
+      coupons: SEED_COUPONS,
     };
   }
 
@@ -71,6 +76,7 @@ class TransactionalDatabase {
       products: [...this.state.products],
       orders: [...this.state.orders],
       dropConfig: { ...this.state.dropConfig },
+      coupons: [...(this.state.coupons || SEED_COUPONS)],
     };
   }
 
@@ -104,11 +110,17 @@ class TransactionalDatabase {
     this.persist();
   }
 
+  public setCoupons(coupons: CouponRecord[]) {
+    this.state.coupons = coupons;
+    this.persist();
+  }
+
   public resetToSeed() {
     this.state = {
       products: SEED_PRODUCTS,
       orders: SEED_ORDERS,
       dropConfig: SEED_DROP_CONFIG,
+      coupons: SEED_COUPONS,
     };
     this.persist();
   }

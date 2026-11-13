@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Search, Heart, Sparkles, Menu, X, ArrowUpRight } from 'lucide-react';
+import { ShoppingBag, Search, Heart, Sparkles, Menu, X, ArrowUpRight, Ruler } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { Category } from '../types';
+import { playClickSound } from '../utils/audio';
 
 interface HeaderProps {
   onSearchQuery?: (q: string) => void;
@@ -11,7 +12,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onSearchQuery, onSelectCategory, activeCategory, onOpenCommandPalette }) => {
-  const { totalItems, setIsCartOpen, wishlist, setIsDropModalOpen } = useCart();
+  const { totalItems, setIsCartOpen, wishlist, setIsDropModalOpen, setIsFitAdvisorOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
@@ -74,7 +75,18 @@ export const Header: React.FC<HeaderProps> = ({ onSearchQuery, onSelectCategory,
         </div>
 
         {/* Right: Drop Alert, Wishlist & Bag */}
-        <div className="flex items-center gap-3 sm:gap-5">
+        <div className="flex items-center gap-2.5 sm:gap-4">
+          <button
+            onClick={() => {
+              playClickSound();
+              setIsFitAdvisorOpen(true);
+            }}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF7F2] hover:bg-[#181513] hover:text-white border border-[#181513]/20 text-[10px] font-mono tracking-widest uppercase transition-all shadow-sm"
+          >
+            <Ruler className="w-3 h-3 text-[#E67E44]" />
+            <span>FIT ADVISOR</span>
+          </button>
+
           <button
             onClick={() => setIsDropModalOpen(true)}
             className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-[#EFE7DB] hover:bg-[#E67E44] hover:text-white border border-[#181513]/15 text-[10px] font-mono tracking-widest uppercase transition-all"

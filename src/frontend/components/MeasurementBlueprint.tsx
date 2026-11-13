@@ -47,7 +47,7 @@ export const MeasurementBlueprint: React.FC<MeasurementBlueprintProps> = ({ prod
     },
   ];
 
-  const current = metrics.find((m) => m.id === activeMetric)!;
+  const current = metrics.find((m) => m.id === activeMetric) || metrics[0];
 
   return (
     <div className="bg-[#FAF7F2] border border-[#181513]/15 rounded-xl p-4 sm:p-5 space-y-4 text-[#181513]">

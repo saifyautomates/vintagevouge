@@ -44,7 +44,7 @@ export type PaymentMethod =
   | 'Cash Tender'
   | 'Card / POS Terminal'
   | 'Razorpay NetBanking';
-export type OrderStatus = 'Completed' | 'Dispatched' | 'Sanitizing';
+export type OrderStatus = 'Completed' | 'Dispatched' | 'Sanitizing' | 'Wax-Sealing' | 'Cancelled';
 
 export interface OrderItem {
   productId: string;
@@ -84,9 +84,21 @@ export interface DropConfigRecord {
   updatedAt: string;
 }
 
+export interface CouponRecord {
+  id: string;
+  code: string;
+  discountType: 'percentage' | 'flat';
+  discountValue: number; // e.g. 10 for 10%, 500 for ₹500
+  minOrderValue?: number;
+  active: boolean;
+  notes?: string;
+  createdAt: string;
+}
+
 export interface DatabaseState {
   products: ProductRecord[];
   orders: OrderRecord[];
   dropConfig: DropConfigRecord;
+  coupons?: CouponRecord[];
 }
 

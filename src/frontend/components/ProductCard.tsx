@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Eye, Plus, Check, Heart, Sparkles } from 'lucide-react';
 import { Product } from '../types';
 import { useCart } from '../context/CartContext';
-import { playClickSound, playHoverSound, playShutterSound } from '../utils/audio';
+import { playClickSound, playHoverSound, playShutterSound, playSparkleSound } from '../utils/audio';
 
 interface ProductCardProps {
   product: Product;
@@ -76,12 +76,32 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         className="relative aspect-[4/5] bg-[#EAE3D4] overflow-hidden cursor-pointer image-zoom-container"
         onClick={() => setSelectedProduct(product)}
       >
+        {/* Primary Specimen Angle */}
         <img
           src={product.images[0]}
           alt={product.title}
           loading="lazy"
-          className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = '/assets/images/boxy-embroidered-shirt.jpg';
+          }}
+          className={`w-full h-full object-cover object-center transition-all duration-700 ${
+            product.images[1] ? 'group-hover:opacity-0 group-hover:scale-105' : 'group-hover:scale-105'
+          }`}
         />
+
+        {/* Secondary Detail Angle on Hover */}
+        {product.images[1] && (
+          <img
+            src={product.images[1]}
+            alt={`${product.title} archival detail`}
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 pointer-events-none"
+          />
+        )}
 
         {/* 1-of-1 Stamp Badge or Sold Out Badge */}
         <div className="absolute top-2.5 left-2.5 z-10">
@@ -105,16 +125,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
 
-        {/* Wishlist Button */}
+        {/* Wishlist Button with Haptic Sound */}
         <button
           onClick={(e) => {
             e.stopPropagation();
-            playShutterSound();
+            if (!isWishlisted) {
+              playSparkleSound();
+            } else {
+              playShutterSound();
+            }
             toggleWishlist(product.id);
           }}
           className={`absolute top-2.5 right-2.5 z-10 p-2 rounded-full backdrop-blur-md transition-all shadow-sm ${
             isWishlisted
-              ? 'bg-[#E67E44] text-white'
+              ? 'bg-[#E67E44] text-white scale-110'
               : 'bg-white/80 text-[#181513] hover:bg-white hover:text-[#E67E44]'
           }`}
           title="Save piece"
@@ -190,7 +214,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               )}
             </div>
             <span className="block text-[9px] font-mono text-[#E67E44] font-semibold uppercase tracking-wider">
-              {product.measurements.pitToPit.split('/')[0]} Chest
+              📏 {product.measurements.pitToPit.split('/')[0]} Chest • {product.measurements.length.split('/')[0]} L
             </span>
           </div>
 

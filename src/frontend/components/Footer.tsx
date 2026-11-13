@@ -295,8 +295,8 @@ export const Footer: React.FC = () => {
             <span className="text-[10px] text-white/60">Strictly single-inventory. No restocks ever.</span>
           </div>
           <div className="space-y-1">
-            <span className="text-emerald-400 font-bold text-sm block">STEAM SANITIZED</span>
-            <span className="text-[10px] text-white/60">Deep cleaned with organic eucalyptus mist in Kota.</span>
+            <span className="text-emerald-400 font-bold text-sm block">48H SIZE EXCHANGE</span>
+            <span className="text-[10px] text-white/60">WhatsApp exchange or 100% store credit voucher.</span>
           </div>
           <div className="space-y-1">
             <span className="text-cyan-400 font-bold text-sm block">FLAT TAPE MEASURED</span>

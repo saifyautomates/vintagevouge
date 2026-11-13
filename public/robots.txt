@@ -1,0 +1,57 @@
+# Vintage Vogue India — Robots.txt
+# Flagship Archival Thrift & Western Wear Studio
+# Studio Location: Sogaria / Workshop Road, New Basti, Kota, Rajasthan – 324002
+# Official Instagram: @vintagevoguee_in
+# Canonical URL: https://vintagevogue.in/
+
+# ==============================================================================
+# Standard Web Crawlers
+# ==============================================================================
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Googlebot-Mobile
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Slurp
+User-agent: Baiduspider
+User-agent: Yandex
+Allow: /
+Allow: /assets/
+Allow: /assets/images/
+Disallow: /api/
+Disallow: /?view=admin
+Disallow: /?view=pos
+
+# ==============================================================================
+# AI Search & Answer Engine Crawlers (AEO / GEO Optimization)
+# Permitted for AI Overviews, Perplexity Citations, ChatGPT Search & Gemini
+# ==============================================================================
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /assets/images/
+Disallow: /api/
+Disallow: /?view=admin
+Disallow: /?view=pos
+
+# ==============================================================================
+# All Other Crawlers
+# ==============================================================================
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /?view=admin
+Disallow: /?view=pos
+
+# Crawl Delay
+Crawl-delay: 1
+
+# Sitemaps & LLMs Metadata
+Sitemap: https://vintagevogue.in/sitemap.xml

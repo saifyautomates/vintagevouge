@@ -19,11 +19,12 @@ import {
   Minus,
   Sparkles,
   Zap,
-  Check
+  Check,
+  MessageCircle
 } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { useCart } from '../context/CartContext';
-import { ProductRecord } from '../../database/schema';
+import { ProductRecord, OrderRecord } from '../../database/schema';
 import { api } from '../../backend/api/client';
 import { playScanBeep, playClickSound, playSuccessChime } from '../utils/audio';
 
@@ -40,7 +41,7 @@ export const POSView: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<'UPI' | 'Cash' | 'Card'>('UPI');
   const [cashTendered, setCashTendered] = useState<number | ''>('');
   const [discountPercent, setDiscountPercent] = useState<number>(0);
-  const [activeReceipt, setActiveReceipt] = useState<any | null>(null);
+  const [activeReceipt, setActiveReceipt] = useState<OrderRecord | null>(null);
   const [isScanningAnimation, setIsScanningAnimation] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -69,16 +70,21 @@ export const POSView: React.FC = () => {
         e.preventDefault();
         setPaymentMethod('Cash');
         playClickSound();
-      } else if (e.key === 'Escape' && registerCart.length > 0) {
-        if (confirm('Void active ticket?')) {
-          setRegisterCart([]);
+      } else if (e.key === 'Escape') {
+        if (activeReceipt) {
+          setActiveReceipt(null);
           playClickSound();
+        } else if (registerCart.length > 0) {
+          if (confirm('Void active ticket?')) {
+            setRegisterCart([]);
+            playClickSound();
+          }
         }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [registerCart]);
+  }, [registerCart, activeReceipt]);
 
   // Cart operations
   const addToRegister = (product: ProductRecord) => {
@@ -633,8 +639,14 @@ export const POSView: React.FC = () => {
 
       {/* THERMAL PAPER RECEIPT MODAL */}
       {activeReceipt && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-[#FAF7F2] text-[#181513] max-w-sm w-full rounded-2xl shadow-2xl p-6 font-mono text-xs space-y-4 animate-slideUp border border-[#181513]/20">
+        <div 
+          onClick={() => setActiveReceipt(null)} 
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()} 
+            className="bg-[#FAF7F2] text-[#181513] max-w-sm w-full rounded-2xl shadow-2xl p-6 font-mono text-xs space-y-4 animate-slideUp border border-[#181513]/20"
+          >
             <div className="flex items-center justify-between border-b border-[#181513]/10 pb-2">
               <span className="font-bold text-xs">THERMAL RECEIPT PREVIEW</span>
               <button
@@ -658,14 +670,25 @@ export const POSView: React.FC = () => {
                 className="flex-1 py-2.5 bg-[#181513] hover:bg-[#E67E44] text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
               >
                 <Printer className="w-3.5 h-3.5" />
-                <span>Print Receipt</span>
+                <span>Print</span>
               </button>
+
+              <a
+                href={api.notifications.getWhatsAppUrl(activeReceipt)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => playClickSound()}
+                className="flex-1 py-2.5 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>WhatsApp</span>
+              </a>
 
               <button
                 onClick={() => setActiveReceipt(null)}
                 className="px-4 py-2.5 bg-black/10 hover:bg-black/20 text-[#181513] rounded-lg text-xs font-bold"
               >
-                Close
+                Done
               </button>
             </div>
           </div>

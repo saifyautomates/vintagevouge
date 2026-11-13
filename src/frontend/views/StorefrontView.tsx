@@ -8,6 +8,7 @@ import { LookbookSplit } from '../components/LookbookSplit';
 import { ProductGrid } from '../components/ProductGrid';
 import { InstagramFeed } from '../components/InstagramFeed';
 import { Footer } from '../components/Footer';
+import { MobileBottomNav } from '../components/MobileBottomNav';
 import { Category } from '../../database/schema';
 
 interface StorefrontViewProps {
@@ -67,6 +68,9 @@ export const StorefrontView: React.FC<StorefrontViewProps> = ({
 
       {/* Comprehensive Kota Hub Studio Location & Logistics Footer */}
       <Footer />
+
+      {/* Floating Glassmorphic Mobile Action Dock (Visible on Mobile) */}
+      <MobileBottomNav onOpenCommandPalette={onOpenCommandPalette} />
     </div>
   );
 };
